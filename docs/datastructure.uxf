@@ -1,19 +1,31 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>70</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>360</x><y>340</y><w>210</w><h>190</h></coordinates><panel_attributes>House
 --
-maxoutput: -
-
-
+id: Int
+maxoutput: Int
+xPosition: Int
+yPosition: Int
+cableLength: Int?
 --
-..
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>130</y><w>210</w><h>190</h></coordinates><panel_attributes>Battery
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>Battery
 --
-capacity: -
-
-
+id: Int
+capacity: Int
+usedCapacity: Int
+coordinates: [x, y]
 --
-..
+add_house(self, house): None??
 
 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>Grid??
+--
+size: Int
+--
+get_violation(self): [Battery] ??
+get_unconnected_house(self): House/None??</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>340</y><w>210</w><h>190</h></coordinates><panel_attributes>CostScheme??
+--
+schemes: -
+--
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>
