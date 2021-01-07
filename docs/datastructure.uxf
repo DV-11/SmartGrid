@@ -1,0 +1,19 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>70</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>House
+--
+maxoutput: -
+
+
+--
+..
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>130</y><w>210</w><h>190</h></coordinates><panel_attributes>Battery
+--
+capacity: -
+
+
+--
+..
+
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
