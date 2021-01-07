@@ -2,9 +2,9 @@
 --
 id: Int
 maxoutput: Int
-xPosition: Int
-yPosition: Int
-cableLength: Int?
+x_position: Int
+y_position: Int
+cable_length: Int?
 --
 
 
@@ -13,10 +13,11 @@ cableLength: Int?
 --
 id: Int
 capacity: Int
-usedCapacity: Int
+used_capacity: Int
 coordinates: [x, y]
 --
 add_house(self, house): None??
+
 
 
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>Grid??
