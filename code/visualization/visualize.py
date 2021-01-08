@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 
 def make_scatter(csv_bateries, csv_houses):
     
+    # grab battery data
     csv_path = csv_bateries
 
     batteries = pd.read_csv(csv_bateries, sep=",", header = 0)
 
-
+    # grab house data
     csv_path = csv_houses
 
     houses = pd.read_csv(csv_houses, sep=",", header = 0)
-
+    
+    # get coordinates of all the batteries 
     batteries_c = []
 
     for i in batteries['positie']:
@@ -20,11 +22,12 @@ def make_scatter(csv_bateries, csv_houses):
 
     batteries_x = [int(i[0]) for i in batteries_c]
     batteries_y = [int(i[1]) for i in batteries_c]
-    
+       
+    # get coordinates of all the houses
     houses_x = [int(i) for i in houses['x']]
     houses_y = [int(i) for i in houses['y']]
     
-    
+    # plot them in a grid 
     plt.scatter(batteries_x, batteries_y, c='red')
     plt.scatter(houses_x, houses_y, c='blue')
     plt.xticks(np.arange(0, 51, 10))
