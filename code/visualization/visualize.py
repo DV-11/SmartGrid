@@ -1,19 +1,36 @@
-import csv
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+def make_scatter(csv_bateries, csv_houses):
+    
+    csv_path = csv_bateries
 
-        
-c = [(38,12),(43,13),(42,3),(49,23),(3,45)]
+    batteries = pd.read_csv(csv_bateries, sep=",", header = 0)
 
-x_c = [i[0] for i in c]
-y_c = [i[1] for i in c]
 
-plt.scatter(x_c, y_c)
-plt.xticks(np.arange(0, 51, 10))
-plt.yticks(np.arange(0, 51, 10))
-plt.minorticks_on()
+    csv_path = csv_houses
 
-plt.grid(which='major')
-plt.grid(which='minor', alpha = 0.25)
-plt.show()
+    houses = pd.read_csv(csv_houses, sep=",", header = 0)
+
+    batteries_c = []
+
+    for i in batteries['positie']:
+        batteries_c.append(i.split(','))
+
+    batteries_x = [int(i[0]) for i in batteries_c]
+    batteries_y = [int(i[1]) for i in batteries_c]
+    
+    houses_x = [int(i) for i in houses['x']]
+    houses_y = [int(i) for i in houses['y']]
+    
+    
+    plt.scatter(batteries_x, batteries_y, c='red')
+    plt.scatter(houses_x, houses_y, c='blue')
+    plt.xticks(np.arange(0, 51, 10))
+    plt.yticks(np.arange(0, 51, 10))
+    plt.minorticks_on()
+
+    plt.grid(which='major')
+    plt.grid(which='minor', alpha = 0.25)
+    plt.show()
