@@ -5,13 +5,9 @@ import matplotlib.pyplot as plt
 def make_scatter(csv_bateries, csv_houses):
     
     # grab battery data
-    csv_path = csv_bateries
-
     batteries = pd.read_csv(csv_bateries, sep=",", header = 0)
 
     # grab house data
-    csv_path = csv_houses
-
     houses = pd.read_csv(csv_houses, sep=",", header = 0)
     
     # get coordinates of all the batteries 
