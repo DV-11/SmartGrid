@@ -1,34 +1,42 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>360</x><y>340</y><w>210</w><h>190</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>320</x><y>340</y><w>350</w><h>190</h></coordinates><panel_attributes>House
 --
 id: Int
 max_output: Int
 x_position: Int
 y_position: Int
 cable_length: Int? TO DO
+
 --
-load_house(self, x_position, y_position, max_output): None ?
+load_houses(self, x_position, y_position, max_output): None ?
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>Battery
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
 --
 id: Int
 capacity: Int
 used_capacity: Int
 coordinates: String
 cables: [coordinates] 
+
 --
 add_house(self, house): None??
+load_battery(self, coordinates, capacity): None ?
 
 
 
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
 --
 size: Int
+
 --
 get_violation(self): [Battery] ??
 get_unconnected_house(self): House/None??
-generate_grid(self, size): ...?</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>340</y><w>210</w><h>190</h></coordinates><panel_attributes>CostScheme??
+generate_grid(self, size): ...?
+place_houses(self,  ..?): ?
+place_batteries(self,  ..?): ?</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>340</y><w>230</w><h>190</h></coordinates><panel_attributes>CostScheme??
 --
 schemes: -
+
 --
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+calculate_cost(self, cable_length): Int ???</panel_attributes><additional_attributes></additional_attributes></element></diagram>
