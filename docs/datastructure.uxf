@@ -5,9 +5,11 @@ max_output: Int
 x_position: Int
 y_position: Int
 cable_length: Int? TO DO
+cables: [coordinates] 
 
 --
 load_houses(self, x_position, y_position, max_output): None ?
+calculate_cable_length(self, cables): cable_length
 
 
 
