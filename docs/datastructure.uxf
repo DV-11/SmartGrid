@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>320</x><y>340</y><w>350</w><h>190</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>310</x><y>240</y><w>350</w><h>190</h></coordinates><panel_attributes>House
 --
 id: Int
 max_output: Int
@@ -6,14 +6,14 @@ x_position: Int
 y_position: Int
 cable_length: Int? TO DO
 cables: [coordinates] 
+battery: Battery
 
 --
-load_houses(self, x_position, y_position, max_output): None ?
 calculate_cable_length(self, cables): cable_length
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>0</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
 --
 id: Int
 capacity: Int
@@ -21,26 +21,28 @@ used_capacity: Int
 coordinates: String
 
 --
-add_house(self, house): None??
-load_battery(self, coordinates, capacity): None ?
+add_house(self, house): None?? remove?
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>0</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
 --
 size: Int
-all_batteries: [
-all_houses: [
-
+all_batteries: [Battery] # or dict
+all_houses: [House]
 --
-get_violation(self): [Battery] ??
-get_unconnected_house(self): House/None??
 generate_grid(self, size): ...?
+load_batteries(self, batteries_file.csv): Battery
+load_houses(self, houses_file.csv): House
 place_houses(self,  ..?): ?
 place_batteries(self,  ..?): ?
-load_batteries(self, battries_file.csv): None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>340</y><w>230</w><h>190</h></coordinates><panel_attributes>CostScheme??
+get_violation(self): [Battery] ??
+get_unconnected_house(self): House/None??</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>240</y><w>230</w><h>190</h></coordinates><panel_attributes>CostScheme??
 --
 schemes: -
 
 --
-calculate_cost(self, cable_length): Int ???</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+calculate_cost(self, cable_length): Int ???</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>40</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>180</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>49</y><w>70</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;50;200</additional_attributes></element></diagram>
