@@ -14,21 +14,27 @@ class Grid():
         with open (source_file) as f:
             # Creates batteries and saves them in a list
             line = f.readline()
-            while line != '\n':
-                line = line.split(',')
+            line = f.readline()
+            line = line.split(',')
+            while len(line) == 3:
                 new_battery = Battery(line[0], line[1], line[2])
-                self.all_batteries.update({[line[0], line[1]]:new_battery})
-                f.readline()
+                coordinates = str('line[0],line[1]')
+                self.all_batteries.update({coordinates:new_battery})
+                line = f.readline()
+                line = line.split(',')
 
     def load_houses(self, source_file):
         with open (source_file) as f:
             # Creates houses and saves them in a list
             line = f.readline()
-            while line != '\n':
-                line = line.split(',')
+            line = f.readline()
+            line = line.split(',')
+            while len(line) == 3:
                 new_house = House(line[0], line[1], line[2])
-                self.all_houses.update({[line[0],line[1]]:new_house})
-                f.readline()
+                coordinates = str('line[0],line[1]')
+                self.all_houses.update({coordinates:new_house})
+                line = f.readline()
+                line = line.split(',')
     
     def create_cable(self, house, battery):
         # stores coordinates and finds distance between house & battery
