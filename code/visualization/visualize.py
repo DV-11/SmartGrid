@@ -37,3 +37,45 @@ def make_scatter(csv_bateries, csv_houses):
     plt.grid(which='major')
     plt.grid(which='minor', alpha = 0.25)
     plt.show()
+ 
+def set_cable(c_battery, c_house, direction='reg'):
+    
+    # set an alternative orientation for the cable
+
+    if direction == 'alt':
+        
+        x1 = c_battery[0]
+        y1 = c_battery[1]
+        x2 = c_house[0]
+        y2 = c_house[1]
+    
+        plt.scatter(x1, y1, c='red')
+        plt.scatter(x2, y2, c='black')
+        plt.plot([x1, x2, x2], [y1, y1, y2],)
+        plt.xticks(np.arange(0, 51, 10))
+        plt.yticks(np.arange(0, 51, 10))
+        plt.minorticks_on()
+
+        plt.grid(which='major')
+        plt.grid(which='minor', alpha = 0.25)
+        plt.show()
+
+    # regular orientation as a default 
+    
+    else:
+        
+        x1 = c_battery[0]
+        y1 = c_battery[1]
+        x2 = c_house[0]
+        y2 = c_house[1]
+    
+        plt.scatter(x1, y1, c='red')
+        plt.scatter(x2, y2, c='black')
+        plt.plot([x1, x1, x2], [y1, y2, y2],)
+        plt.xticks(np.arange(0, 51, 10))
+        plt.yticks(np.arange(0, 51, 10))
+        plt.minorticks_on()
+
+        plt.grid(which='major')
+        plt.grid(which='minor', alpha = 0.25)
+        plt.show()
