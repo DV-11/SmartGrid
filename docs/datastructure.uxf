@@ -14,13 +14,14 @@ cable_length: Int?
 id: Int
 capacity: Int
 used_capacity: Int
-coordinates: [x, y]
+x_coordinate: Int
+y_coordinate: Int
 --
 add_house(self, house): None??
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>210</w><h>190</h></coordinates><panel_attributes>Grid??
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>100</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
 --
 size: Int
 --
