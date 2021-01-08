@@ -2,8 +2,8 @@ from .house import House
 from .battery import Battery
 
 class Grid():
-    def __init__(self, house_file, battery_file, size):
-        self.size = size
+    def __init__(self, house_file, battery_file):
+        self.size = 50
         self.all_batteries = {}
         self.all_houses = {}
         self.load_batteries(house_file)
