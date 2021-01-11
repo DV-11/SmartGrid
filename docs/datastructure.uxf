@@ -1,10 +1,9 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>400</x><y>240</y><w>350</w><h>190</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>368</x><y>240</y><w>350</w><h>190</h></coordinates><panel_attributes>House
 --
 id: Int
 max_output: Int
 x_position: Int
 y_position: Int
-cable_length: Int? TO DO remove?
 cables: [coordinates] 
 battery: Battery
 cable_cost: Int
@@ -14,12 +13,12 @@ calculate_cable_cost(self, cables): cable_cost
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>0</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>0</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
 --
 id: Int
 capacity: Int
-used_capacity: Int
-coordinates: String
+reserved_capacity: Int
+position: String
 
 --
 add_house(self, house): None?? remove?
@@ -27,7 +26,7 @@ add_house(self, house): None?? remove?
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>0</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>68</x><y>0</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
 --
 size: Int
 all_batteries: [Battery] # or dict
@@ -39,6 +38,6 @@ load_batteries(self, batteries_file.csv): Battery
 load_houses(self, houses_file.csv): House
 get_violation(self): [Battery] ??
 get_unconnected_house(self): House/None??
-calc_all_costs(self, all_houses): all_costs</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>40</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>550</x><y>180</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>49</y><w>70</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
+calc_all_costs(self, all_houses): all_costs</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>40</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>518</x><y>180</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>49</y><w>70</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes><additional_attributes>10;10;50;200</additional_attributes></element></diagram>
