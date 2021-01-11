@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # Create a grid from our data
     grid = grid.Grid(f"data/{district}/{district}_batteries.csv", f"data/{district}/{district}_houses.csv")
 
-    # temp
+    # Create output file
     
     with open('output.json', 'w') as f:
             f.write(grid.json())

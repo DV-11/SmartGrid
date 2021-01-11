@@ -22,11 +22,9 @@ class Grid():
             line = line.split(',')
             while len(line) == 3:
                 new_battery = Battery(line[0].rstrip('\"'), line[1].rstrip('"\"'), line[2].rstrip())
-                print(line)
                 coordinates = (line[0] + line[1])
                 self.all_batteries.update({coordinates:new_battery})
                 line = f.readline()
-                print(line)
                 line = line.split(',')
 
     def load_houses(self, source_file):
@@ -42,6 +40,7 @@ class Grid():
                 line = f.readline()
                 line = line.split(',')
     
+    # note: does not work yet!
     def create_cable(self, house, battery):
         # stores coordinates and finds distance between house & battery
         house_coordinates = [house.x_coordinate, battery.y_coordinate]
