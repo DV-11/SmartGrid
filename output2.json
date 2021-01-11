@@ -1,0 +1,1103 @@
+{                                               // missing district and cost accumulated (and cables)
+    "all_batteries": {
+        "\"345\"": {                            // should be "34,5"
+            "cables": [],
+            "capacity": "1507.0",
+            "houses": [],                       // ??
+            "id": 0,
+            "reserved_capacity": "1507.0",      // should be 0
+            "x_coordinate": "\"3",              // remove \"
+            "y_coordinate": "45"
+        },
+        "\"3812\"": {
+            "cables": [],
+            "capacity": "1507.0",
+            "houses": [],
+            "id": 0,
+            "reserved_capacity": "1507.0",
+            "x_coordinate": "\"38",
+            "y_coordinate": "12"
+        },
+        "\"423\"": {
+            "cables": [],
+            "capacity": "1507.0",
+            "houses": [],
+            "id": 0,
+            "reserved_capacity": "1507.0",
+            "x_coordinate": "\"42",
+            "y_coordinate": "3"
+        },
+        "\"4313\"": {
+            "cables": [],
+            "capacity": "1507.0",
+            "houses": [],
+            "id": 0,
+            "reserved_capacity": "1507.0",
+            "x_coordinate": "\"43",
+            "y_coordinate": "13"
+        },
+        "\"4923\"": {
+            "cables": [],
+            "capacity": "1507.0",
+            "houses": [],
+            "id": 0,
+            "reserved_capacity": "1507.0",
+            "x_coordinate": "\"49",
+            "y_coordinate": "23"
+        }
+    },
+    "all_cables": [],
+    "all_houses": {
+        "016": {
+            "cable": [],
+            "id": 0,
+            "output": "48.15325636",
+            "x_coordinate": "0",
+            "y_coordinate": "16"
+        },
+        "034": {
+            "cable": [],
+            "id": 0,
+            "output": "74.53947279",
+            "x_coordinate": "0",
+            "y_coordinate": "34"
+        },
+        "1027": {
+            "cable": [],
+            "id": 0,
+            "output": "26.19979919",
+            "x_coordinate": "10",
+            "y_coordinate": "27"
+        },
+        "1039": {
+            "cable": [],
+            "id": 0,
+            "output": "46.25506287",
+            "x_coordinate": "10",
+            "y_coordinate": "39"
+        },
+        "1047": {
+            "cable": [],
+            "id": 0,
+            "output": "70.68631843",
+            "x_coordinate": "10",
+            "y_coordinate": "47"
+        },
+        "1110": {
+            "cable": [],
+            "id": 0,
+            "output": "63.87594515",
+            "x_coordinate": "11",
+            "y_coordinate": "10"
+        },
+        "1138": {
+            "cable": [],
+            "id": 0,
+            "output": "74.82543524",
+            "x_coordinate": "11",
+            "y_coordinate": "38"
+        },
+        "114": {
+            "cable": [],
+            "id": 0,
+            "output": "44.75870431",
+            "x_coordinate": "11",
+            "y_coordinate": "4"
+        },
+        "118": {
+            "cable": [],
+            "id": 0,
+            "output": "45.25994244",
+            "x_coordinate": "1",
+            "y_coordinate": "18"
+        },
+        "124": {
+            "cable": [],
+            "id": 0,
+            "output": "54.40644245",
+            "x_coordinate": "1",
+            "y_coordinate": "24"
+        },
+        "125": {
+            "cable": [],
+            "id": 0,
+            "output": "74.15296092",
+            "x_coordinate": "12",
+            "y_coordinate": "5"
+        },
+        "1327": {
+            "cable": [],
+            "id": 0,
+            "output": "37.28002017",
+            "x_coordinate": "13",
+            "y_coordinate": "27"
+        },
+        "1328": {
+            "cable": [],
+            "id": 0,
+            "output": "56.14106998",
+            "x_coordinate": "13",
+            "y_coordinate": "28"
+        },
+        "154": {
+            "cable": [],
+            "id": 0,
+            "output": "70.02856894",
+            "x_coordinate": "15",
+            "y_coordinate": "4"
+        },
+        "1544": {
+            "cable": [],
+            "id": 0,
+            "output": "53.08761347",
+            "x_coordinate": "15",
+            "y_coordinate": "44"
+        },
+        "1546": {
+            "cable": [],
+            "id": 0,
+            "output": "63.30973309",
+            "x_coordinate": "15",
+            "y_coordinate": "46"
+        },
+        "1550": {
+            "cable": [],
+            "id": 0,
+            "output": "47.17876571",
+            "x_coordinate": "15",
+            "y_coordinate": "50"
+        },
+        "163": {
+            "cable": [],
+            "id": 0,
+            "output": "33.61818802",
+            "x_coordinate": "16",
+            "y_coordinate": "3"
+        },
+        "1638": {
+            "cable": [],
+            "id": 0,
+            "output": "65.00367928",
+            "x_coordinate": "16",
+            "y_coordinate": "38"
+        },
+        "1641": {
+            "cable": [],
+            "id": 0,
+            "output": "34.78697213",
+            "x_coordinate": "16",
+            "y_coordinate": "41"
+        },
+        "1648": {
+            "cable": [],
+            "id": 0,
+            "output": "29.83002147",
+            "x_coordinate": "16",
+            "y_coordinate": "48"
+        },
+        "1711": {
+            "cable": [],
+            "id": 0,
+            "output": "62.14055349",
+            "x_coordinate": "17",
+            "y_coordinate": "11"
+        },
+        "1815": {
+            "cable": [],
+            "id": 0,
+            "output": "57.15314373",
+            "x_coordinate": "18",
+            "y_coordinate": "15"
+        },
+        "1828": {
+            "cable": [],
+            "id": 0,
+            "output": "55.75694271",
+            "x_coordinate": "18",
+            "y_coordinate": "28"
+        },
+        "1832": {
+            "cable": [],
+            "id": 0,
+            "output": "32.63123071",
+            "x_coordinate": "18",
+            "y_coordinate": "32"
+        },
+        "1833": {
+            "cable": [],
+            "id": 0,
+            "output": "64.25056806",
+            "x_coordinate": "18",
+            "y_coordinate": "33"
+        },
+        "1837": {
+            "cable": [],
+            "id": 0,
+            "output": "70.21473166",
+            "x_coordinate": "18",
+            "y_coordinate": "37"
+        },
+        "1912": {
+            "cable": [],
+            "id": 0,
+            "output": "53.03976583",
+            "x_coordinate": "19",
+            "y_coordinate": "12"
+        },
+        "193": {
+            "cable": [],
+            "id": 0,
+            "output": "70.34144168",
+            "x_coordinate": "19",
+            "y_coordinate": "3"
+        },
+        "1933": {
+            "cable": [],
+            "id": 0,
+            "output": "66.97873982",
+            "x_coordinate": "19",
+            "y_coordinate": "33"
+        },
+        "1938": {
+            "cable": [],
+            "id": 0,
+            "output": "46.4333204",
+            "x_coordinate": "19",
+            "y_coordinate": "38"
+        },
+        "194": {
+            "cable": [],
+            "id": 0,
+            "output": "52.43116675",
+            "x_coordinate": "19",
+            "y_coordinate": "4"
+        },
+        "1940": {
+            "cable": [],
+            "id": 0,
+            "output": "60.03957103",
+            "x_coordinate": "19",
+            "y_coordinate": "40"
+        },
+        "2011": {
+            "cable": [],
+            "id": 0,
+            "output": "40.20336825",
+            "x_coordinate": "20",
+            "y_coordinate": "11"
+        },
+        "2014": {
+            "cable": [],
+            "id": 0,
+            "output": "45.14508246",
+            "x_coordinate": "20",
+            "y_coordinate": "14"
+        },
+        "203": {
+            "cable": [],
+            "id": 0,
+            "output": "67.12368936",
+            "x_coordinate": "20",
+            "y_coordinate": "3"
+        },
+        "2034": {
+            "cable": [],
+            "id": 0,
+            "output": "44.9319234",
+            "x_coordinate": "20",
+            "y_coordinate": "34"
+        },
+        "2111": {
+            "cable": [],
+            "id": 0,
+            "output": "47.29043731",
+            "x_coordinate": "21",
+            "y_coordinate": "11"
+        },
+        "212": {
+            "cable": [],
+            "id": 0,
+            "output": "75.8473443",
+            "x_coordinate": "2",
+            "y_coordinate": "12"
+        },
+        "2127": {
+            "cable": [],
+            "id": 0,
+            "output": "38.69411298",
+            "x_coordinate": "21",
+            "y_coordinate": "27"
+        },
+        "2129": {
+            "cable": [],
+            "id": 0,
+            "output": "45.33453242",
+            "x_coordinate": "21",
+            "y_coordinate": "29"
+        },
+        "2137": {
+            "cable": [],
+            "id": 0,
+            "output": "53.84443114",
+            "x_coordinate": "21",
+            "y_coordinate": "37"
+        },
+        "2142": {
+            "cable": [],
+            "id": 0,
+            "output": "65.6434655",
+            "x_coordinate": "21",
+            "y_coordinate": "42"
+        },
+        "2144": {
+            "cable": [],
+            "id": 0,
+            "output": "46.65642768",
+            "x_coordinate": "21",
+            "y_coordinate": "44"
+        },
+        "2148": {
+            "cable": [],
+            "id": 0,
+            "output": "71.35472201",
+            "x_coordinate": "21",
+            "y_coordinate": "48"
+        },
+        "2150": {
+            "cable": [],
+            "id": 0,
+            "output": "38.71047582",
+            "x_coordinate": "21",
+            "y_coordinate": "50"
+        },
+        "2210": {
+            "cable": [],
+            "id": 0,
+            "output": "72.88165705",
+            "x_coordinate": "22",
+            "y_coordinate": "10"
+        },
+        "2214": {
+            "cable": [],
+            "id": 0,
+            "output": "42.32972013",
+            "x_coordinate": "22",
+            "y_coordinate": "14"
+        },
+        "2217": {
+            "cable": [],
+            "id": 0,
+            "output": "66.78438663",
+            "x_coordinate": "22",
+            "y_coordinate": "17"
+        },
+        "2246": {
+            "cable": [],
+            "id": 0,
+            "output": "62.43058175",
+            "x_coordinate": "22",
+            "y_coordinate": "46"
+        },
+        "231": {
+            "cable": [],
+            "id": 0,
+            "output": "37.23961036",
+            "x_coordinate": "23",
+            "y_coordinate": "1"
+        },
+        "2310": {
+            "cable": [],
+            "id": 0,
+            "output": "29.34726889",
+            "x_coordinate": "23",
+            "y_coordinate": "10"
+        },
+        "2348": {
+            "cable": [],
+            "id": 0,
+            "output": "57.77286486",
+            "x_coordinate": "23",
+            "y_coordinate": "48"
+        },
+        "2418": {
+            "cable": [],
+            "id": 0,
+            "output": "38.3766668",
+            "x_coordinate": "24",
+            "y_coordinate": "18"
+        },
+        "2422": {
+            "cable": [],
+            "id": 0,
+            "output": "66.13020717",
+            "x_coordinate": "24",
+            "y_coordinate": "22"
+        },
+        "2424": {
+            "cable": [],
+            "id": 0,
+            "output": "52.07076394",
+            "x_coordinate": "24",
+            "y_coordinate": "24"
+        },
+        "2430": {
+            "cable": [],
+            "id": 0,
+            "output": "76.1538049",
+            "x_coordinate": "24",
+            "y_coordinate": "30"
+        },
+        "2436": {
+            "cable": [],
+            "id": 0,
+            "output": "63.12900053",
+            "x_coordinate": "24",
+            "y_coordinate": "36"
+        },
+        "250": {
+            "cable": [],
+            "id": 0,
+            "output": "29.93133051",
+            "x_coordinate": "2",
+            "y_coordinate": "50"
+        },
+        "2540": {
+            "cable": [],
+            "id": 0,
+            "output": "67.70113184",
+            "x_coordinate": "25",
+            "y_coordinate": "40"
+        },
+        "255": {
+            "cable": [],
+            "id": 0,
+            "output": "55.93567156",
+            "x_coordinate": "25",
+            "y_coordinate": "5"
+        },
+        "2627": {
+            "cable": [],
+            "id": 0,
+            "output": "56.65609954",
+            "x_coordinate": "26",
+            "y_coordinate": "27"
+        },
+        "2630": {
+            "cable": [],
+            "id": 0,
+            "output": "62.0133643",
+            "x_coordinate": "26",
+            "y_coordinate": "30"
+        },
+        "2637": {
+            "cable": [],
+            "id": 0,
+            "output": "33.96614241",
+            "x_coordinate": "26",
+            "y_coordinate": "37"
+        },
+        "2713": {
+            "cable": [],
+            "id": 0,
+            "output": "72.11411933",
+            "x_coordinate": "27",
+            "y_coordinate": "13"
+        },
+        "2722": {
+            "cable": [],
+            "id": 0,
+            "output": "29.92408755",
+            "x_coordinate": "27",
+            "y_coordinate": "22"
+        },
+        "273": {
+            "cable": [],
+            "id": 0,
+            "output": "57.11814462",
+            "x_coordinate": "27",
+            "y_coordinate": "3"
+        },
+        "28": {
+            "cable": [],
+            "id": 0,
+            "output": "27.78076375",
+            "x_coordinate": "2",
+            "y_coordinate": "8"
+        },
+        "2815": {
+            "cable": [],
+            "id": 0,
+            "output": "37.81128037",
+            "x_coordinate": "28",
+            "y_coordinate": "15"
+        },
+        "2823": {
+            "cable": [],
+            "id": 0,
+            "output": "38.72179636",
+            "x_coordinate": "28",
+            "y_coordinate": "23"
+        },
+        "283": {
+            "cable": [],
+            "id": 0,
+            "output": "29.90737428",
+            "x_coordinate": "28",
+            "y_coordinate": "3"
+        },
+        "2837": {
+            "cable": [],
+            "id": 0,
+            "output": "55.74063546",
+            "x_coordinate": "28",
+            "y_coordinate": "37"
+        },
+        "2922": {
+            "cable": [],
+            "id": 0,
+            "output": "56.03511409",
+            "x_coordinate": "29",
+            "y_coordinate": "22"
+        },
+        "2930": {
+            "cable": [],
+            "id": 0,
+            "output": "62.33504063",
+            "x_coordinate": "29",
+            "y_coordinate": "30"
+        },
+        "297": {
+            "cable": [],
+            "id": 0,
+            "output": "60.8375359",
+            "x_coordinate": "29",
+            "y_coordinate": "7"
+        },
+        "3012": {
+            "cable": [],
+            "id": 0,
+            "output": "66.05341632",
+            "x_coordinate": "30",
+            "y_coordinate": "12"
+        },
+        "3016": {
+            "cable": [],
+            "id": 0,
+            "output": "49.93687743",
+            "x_coordinate": "30",
+            "y_coordinate": "16"
+        },
+        "302": {
+            "cable": [],
+            "id": 0,
+            "output": "60.7690834",
+            "x_coordinate": "30",
+            "y_coordinate": "2"
+        },
+        "3025": {
+            "cable": [],
+            "id": 0,
+            "output": "63.13649746",
+            "x_coordinate": "30",
+            "y_coordinate": "25"
+        },
+        "3031": {
+            "cable": [],
+            "id": 0,
+            "output": "33.30314048",
+            "x_coordinate": "30",
+            "y_coordinate": "31"
+        },
+        "3037": {
+            "cable": [],
+            "id": 0,
+            "output": "61.05026554",
+            "x_coordinate": "30",
+            "y_coordinate": "37"
+        },
+        "304": {
+            "cable": [],
+            "id": 0,
+            "output": "29.51140333",
+            "x_coordinate": "30",
+            "y_coordinate": "4"
+        },
+        "3115": {
+            "cable": [],
+            "id": 0,
+            "output": "39.85726456",
+            "x_coordinate": "31",
+            "y_coordinate": "15"
+        },
+        "3118": {
+            "cable": [],
+            "id": 0,
+            "output": "38.85647001",
+            "x_coordinate": "31",
+            "y_coordinate": "18"
+        },
+        "3141": {
+            "cable": [],
+            "id": 0,
+            "output": "68.6532457",
+            "x_coordinate": "31",
+            "y_coordinate": "41"
+        },
+        "329": {
+            "cable": [],
+            "id": 0,
+            "output": "32.56142196",
+            "x_coordinate": "32",
+            "y_coordinate": "9"
+        },
+        "330": {
+            "cable": [],
+            "id": 0,
+            "output": "39.13247939",
+            "x_coordinate": "33",
+            "y_coordinate": "0"
+        },
+        "3311": {
+            "cable": [],
+            "id": 0,
+            "output": "66.45865072",
+            "x_coordinate": "33",
+            "y_coordinate": "11"
+        },
+        "3324": {
+            "cable": [],
+            "id": 0,
+            "output": "74.26615041",
+            "x_coordinate": "33",
+            "y_coordinate": "24"
+        },
+        "337": {
+            "cable": [],
+            "id": 0,
+            "output": "39.45690812",
+            "x_coordinate": "33",
+            "y_coordinate": "7"
+        },
+        "3447": {
+            "cable": [],
+            "id": 0,
+            "output": "53.97543253",
+            "x_coordinate": "34",
+            "y_coordinate": "47"
+        },
+        "3450": {
+            "cable": [],
+            "id": 0,
+            "output": "41.71675352",
+            "x_coordinate": "34",
+            "y_coordinate": "50"
+        },
+        "348": {
+            "cable": [],
+            "id": 0,
+            "output": "41.23924682",
+            "x_coordinate": "34",
+            "y_coordinate": "8"
+        },
+        "3641": {
+            "cable": [],
+            "id": 0,
+            "output": "29.1671214",
+            "x_coordinate": "36",
+            "y_coordinate": "41"
+        },
+        "37": {
+            "cable": [],
+            "id": 0,
+            "output": "58.40033018",
+            "x_coordinate": "3",
+            "y_coordinate": "7"
+        },
+        "3723": {
+            "cable": [],
+            "id": 0,
+            "output": "51.94608562",
+            "x_coordinate": "37",
+            "y_coordinate": "23"
+        },
+        "3728": {
+            "cable": [],
+            "id": 0,
+            "output": "60.40913294",
+            "x_coordinate": "37",
+            "y_coordinate": "28"
+        },
+        "3735": {
+            "cable": [],
+            "id": 0,
+            "output": "29.26065385",
+            "x_coordinate": "37",
+            "y_coordinate": "35"
+        },
+        "3747": {
+            "cable": [],
+            "id": 0,
+            "output": "26.27681146",
+            "x_coordinate": "37",
+            "y_coordinate": "47"
+        },
+        "376": {
+            "cable": [],
+            "id": 0,
+            "output": "30.41692196",
+            "x_coordinate": "37",
+            "y_coordinate": "6"
+        },
+        "3818": {
+            "cable": [],
+            "id": 0,
+            "output": "69.53106382",
+            "x_coordinate": "38",
+            "y_coordinate": "18"
+        },
+        "3821": {
+            "cable": [],
+            "id": 0,
+            "output": "33.56390131",
+            "x_coordinate": "38",
+            "y_coordinate": "21"
+        },
+        "3822": {
+            "cable": [],
+            "id": 0,
+            "output": "59.91115918",
+            "x_coordinate": "38",
+            "y_coordinate": "22"
+        },
+        "3824": {
+            "cable": [],
+            "id": 0,
+            "output": "50.53984719",
+            "x_coordinate": "38",
+            "y_coordinate": "24"
+        },
+        "39": {
+            "cable": [],
+            "id": 0,
+            "output": "53.27408283",
+            "x_coordinate": "3",
+            "y_coordinate": "9"
+        },
+        "3914": {
+            "cable": [],
+            "id": 0,
+            "output": "49.16852893",
+            "x_coordinate": "39",
+            "y_coordinate": "14"
+        },
+        "3919": {
+            "cable": [],
+            "id": 0,
+            "output": "64.25603513",
+            "x_coordinate": "39",
+            "y_coordinate": "19"
+        },
+        "3935": {
+            "cable": [],
+            "id": 0,
+            "output": "26.81272998",
+            "x_coordinate": "39",
+            "y_coordinate": "35"
+        },
+        "3943": {
+            "cable": [],
+            "id": 0,
+            "output": "39.37298309",
+            "x_coordinate": "39",
+            "y_coordinate": "43"
+        },
+        "40": {
+            "cable": [],
+            "id": 0,
+            "output": "29.86780761",
+            "x_coordinate": "4",
+            "y_coordinate": "0"
+        },
+        "4039": {
+            "cable": [],
+            "id": 0,
+            "output": "40.72933179",
+            "x_coordinate": "40",
+            "y_coordinate": "39"
+        },
+        "4136": {
+            "cable": [],
+            "id": 0,
+            "output": "60.96696147",
+            "x_coordinate": "41",
+            "y_coordinate": "36"
+        },
+        "4234": {
+            "cable": [],
+            "id": 0,
+            "output": "43.0013272",
+            "x_coordinate": "42",
+            "y_coordinate": "34"
+        },
+        "4240": {
+            "cable": [],
+            "id": 0,
+            "output": "41.46231813",
+            "x_coordinate": "42",
+            "y_coordinate": "40"
+        },
+        "4247": {
+            "cable": [],
+            "id": 0,
+            "output": "26.65336877",
+            "x_coordinate": "42",
+            "y_coordinate": "47"
+        },
+        "43": {
+            "cable": [],
+            "id": 0,
+            "output": "45.9393011",
+            "x_coordinate": "4",
+            "y_coordinate": "3"
+        },
+        "4314": {
+            "cable": [],
+            "id": 0,
+            "output": "59.68412189",
+            "x_coordinate": "43",
+            "y_coordinate": "14"
+        },
+        "433": {
+            "cable": [],
+            "id": 0,
+            "output": "38.13617191",
+            "x_coordinate": "4",
+            "y_coordinate": "33"
+        },
+        "4332": {
+            "cable": [],
+            "id": 0,
+            "output": "46.63929091",
+            "x_coordinate": "43",
+            "y_coordinate": "32"
+        },
+        "4339": {
+            "cable": [],
+            "id": 0,
+            "output": "30.57764452",
+            "x_coordinate": "43",
+            "y_coordinate": "39"
+        },
+        "438": {
+            "cable": [],
+            "id": 0,
+            "output": "28.04976611",
+            "x_coordinate": "4",
+            "y_coordinate": "38"
+        },
+        "4427": {
+            "cable": [],
+            "id": 0,
+            "output": "28.73871494",
+            "x_coordinate": "44",
+            "y_coordinate": "27"
+        },
+        "4433": {
+            "cable": [],
+            "id": 0,
+            "output": "51.84271486",
+            "x_coordinate": "44",
+            "y_coordinate": "33"
+        },
+        "45": {
+            "cable": [],
+            "id": 0,
+            "output": "43.28587772",
+            "x_coordinate": "4",
+            "y_coordinate": "5"
+        },
+        "451": {
+            "cable": [],
+            "id": 0,
+            "output": "59.63813712",
+            "x_coordinate": "45",
+            "y_coordinate": "1"
+        },
+        "4524": {
+            "cable": [],
+            "id": 0,
+            "output": "31.97506792",
+            "x_coordinate": "45",
+            "y_coordinate": "24"
+        },
+        "4638": {
+            "cable": [],
+            "id": 0,
+            "output": "73.40226925",
+            "x_coordinate": "46",
+            "y_coordinate": "38"
+        },
+        "4642": {
+            "cable": [],
+            "id": 0,
+            "output": "66.07952654",
+            "x_coordinate": "46",
+            "y_coordinate": "42"
+        },
+        "4716": {
+            "cable": [],
+            "id": 0,
+            "output": "31.4973607",
+            "x_coordinate": "47",
+            "y_coordinate": "16"
+        },
+        "4740": {
+            "cable": [],
+            "id": 0,
+            "output": "71.42208448",
+            "x_coordinate": "47",
+            "y_coordinate": "40"
+        },
+        "4750": {
+            "cable": [],
+            "id": 0,
+            "output": "70.41480105",
+            "x_coordinate": "47",
+            "y_coordinate": "50"
+        },
+        "476": {
+            "cable": [],
+            "id": 0,
+            "output": "41.78571625",
+            "x_coordinate": "47",
+            "y_coordinate": "6"
+        },
+        "484": {
+            "cable": [],
+            "id": 0,
+            "output": "58.90934923",
+            "x_coordinate": "48",
+            "y_coordinate": "4"
+        },
+        "4850": {
+            "cable": [],
+            "id": 0,
+            "output": "35.97663002",
+            "x_coordinate": "48",
+            "y_coordinate": "50"
+        },
+        "4944": {
+            "cable": [],
+            "id": 0,
+            "output": "39.82123377",
+            "x_coordinate": "49",
+            "y_coordinate": "44"
+        },
+        "503": {
+            "cable": [],
+            "id": 0,
+            "output": "60.5787997",
+            "x_coordinate": "50",
+            "y_coordinate": "3"
+        },
+        "5035": {
+            "cable": [],
+            "id": 0,
+            "output": "54.25835415",
+            "x_coordinate": "50",
+            "y_coordinate": "35"
+        },
+        "5049": {
+            "cable": [],
+            "id": 0,
+            "output": "38.24420236",
+            "x_coordinate": "50",
+            "y_coordinate": "49"
+        },
+        "513": {
+            "cable": [],
+            "id": 0,
+            "output": "57.19809379",
+            "x_coordinate": "5",
+            "y_coordinate": "13"
+        },
+        "515": {
+            "cable": [],
+            "id": 0,
+            "output": "52.08494864",
+            "x_coordinate": "5",
+            "y_coordinate": "15"
+        },
+        "537": {
+            "cable": [],
+            "id": 0,
+            "output": "68.63304898",
+            "x_coordinate": "5",
+            "y_coordinate": "37"
+        },
+        "59": {
+            "cable": [],
+            "id": 0,
+            "output": "38.37311881",
+            "x_coordinate": "5",
+            "y_coordinate": "9"
+        },
+        "725": {
+            "cable": [],
+            "id": 0,
+            "output": "38.50460131",
+            "x_coordinate": "7",
+            "y_coordinate": "25"
+        },
+        "83": {
+            "cable": [],
+            "id": 0,
+            "output": "31.03872389",
+            "x_coordinate": "8",
+            "y_coordinate": "3"
+        },
+        "86": {
+            "cable": [],
+            "id": 0,
+            "output": "30.48448777",
+            "x_coordinate": "8",
+            "y_coordinate": "6"
+        },
+        "923": {
+            "cable": [],
+            "id": 0,
+            "output": "29.43663895",
+            "x_coordinate": "9",
+            "y_coordinate": "23"
+        },
+        "937": {
+            "cable": [],
+            "id": 0,
+            "output": "63.19785578",
+            "x_coordinate": "9",
+            "y_coordinate": "37"
+        },
+        "944": {
+            "cable": [],
+            "id": 0,
+            "output": "44.14228862",
+            "x_coordinate": "9",
+            "y_coordinate": "44"
+        },
+        "948": {
+            "cable": [],
+            "id": 0,
+            "output": "41.7880369",
+            "x_coordinate": "9",
+            "y_coordinate": "48"
+        },
+        "950": {
+            "cable": [],
+            "id": 0,
+            "output": "38.5524821",
+            "x_coordinate": "9",
+            "y_coordinate": "50"
+        }
+    },
+    "size": 50
+}
