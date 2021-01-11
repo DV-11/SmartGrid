@@ -6,3 +6,4 @@ class House():
         self.x_coordinate = x
         self.y_coordinate = y
         self.output = output
+        self.cable = []

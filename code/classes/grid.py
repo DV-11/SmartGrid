@@ -1,14 +1,18 @@
 from .house import House
 from .battery import Battery
+import json
 
 class Grid():
-    def __init__(self, house_file, battery_file):
+    def __init__(self,  battery_file, house_file):
         self.size = 50
         self.all_batteries = {}
         self.all_houses = {}
-        self.load_batteries(house_file)
-        self.load_houses(battery_file)
+        self.load_batteries(battery_file)
+        self.load_houses(house_file)
         self.all_cables = []
+        
+    def json(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
     def load_batteries(self, source_file):
         with open (source_file) as f:
@@ -17,10 +21,12 @@ class Grid():
             line = f.readline()
             line = line.split(',')
             while len(line) == 3:
-                new_battery = Battery(line[0], line[1], line[2])
-                coordinates = str('line[0],line[1]')
+                new_battery = Battery(line[0].rstrip('\"'), line[1].rstrip('"\"'), line[2].rstrip())
+                print(line)
+                coordinates = (line[0] + line[1])
                 self.all_batteries.update({coordinates:new_battery})
                 line = f.readline()
+                print(line)
                 line = line.split(',')
 
     def load_houses(self, source_file):
@@ -30,8 +36,8 @@ class Grid():
             line = f.readline()
             line = line.split(',')
             while len(line) == 3:
-                new_house = House(line[0], line[1], line[2])
-                coordinates = str('line[0],line[1]')
+                new_house = House(line[0], line[1], line[2].rstrip('\n'))
+                coordinates = (line[0] + line[1])
                 self.all_houses.update({coordinates:new_house})
                 line = f.readline()
                 line = line.split(',')
