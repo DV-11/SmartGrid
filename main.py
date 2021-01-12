@@ -1,7 +1,7 @@
 from code.classes import grid, battery, house
 from code.algorithms.randomize import random_assignment, create_cable
 from code.algorithms import greedy as gr
-
+from code.visualization.visualize import make_scatter
 import json 
 # from code.visualization import visualize as visualization
 
