@@ -4,10 +4,10 @@ import json
 import csv
 
 class Grid():
-    def __init__(self,  battery_file, house_file):
+    def __init__(self, battery_file, house_file):
         self.size = 50
-        self.all_batteries = self.load_batteries(house_file)
-        self.all_houses = self.load_houses(battery_file)
+        self.all_batteries = self.load_batteries(battery_file)
+        self.all_houses = self.load_houses(house_file)
         self.all_cables = []
 
         # self.all_batteries = {}

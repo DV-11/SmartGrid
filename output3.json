@@ -41,6 +41,7 @@
             "reserved_capacity": 0
         }
     },
+    "all_cables": [],
     "all_houses": {
         "1": {
             "cables": [],
