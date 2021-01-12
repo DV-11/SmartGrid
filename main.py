@@ -20,3 +20,6 @@ if __name__ == "__main__":
     # Create output file
     with open('output4.json', 'w') as f:
         f.write(grid.json())
+
+    # plot batteries and houses onto a grid as a scatter plot 
+    make_scatter(grid.all_batteries.values(), grid.all_houses.values())

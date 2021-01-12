@@ -2,26 +2,23 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def make_scatter(csv_bateries, csv_houses):
+def make_scatter(batteries_data, houses_data):
     
     # grab battery data
-    batteries = pd.read_csv(csv_bateries, sep=",", header = 0)
+    batteries_x = []
+    batteries_y = []
+
+    for i in batteries_data:
+        batteries_x.append(int(i.x_coordinate))
+        batteries_y.append(int(i.y_coordinate))
 
     # grab house data
-    houses = pd.read_csv(csv_houses, sep=",", header = 0)
-    
-    # get coordinates of all the batteries 
-    batteries_c = []
+    houses_x = []
+    houses_y = []
 
-    for i in batteries['positie']:
-        batteries_c.append(i.split(','))
-
-    batteries_x = [int(i[0]) for i in batteries_c]
-    batteries_y = [int(i[1]) for i in batteries_c]
-       
-    # get coordinates of all the houses
-    houses_x = [int(i) for i in houses['x']]
-    houses_y = [int(i) for i in houses['y']]
+    for i in houses_data:
+        houses_x.append(int(i.x_coordinate))
+        houses_y.append(int(i.y_coordinate))
     
     # this bit is taken from https://stackoverflow.com/questions/24943991/change-grid-interval-and-specify-tick-labels-in-matplotlib
     # couldn't figure out how to change the frequence of the subticks on my own
