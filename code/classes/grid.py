@@ -24,9 +24,18 @@ class Grid():
 
         with open (source_file) as in_file:
             reader = csv.DictReader(in_file)
+            battery_id = 1
 
             for row in reader:
-                batteries[row['positie']] = Battery(row['positie'], row['capaciteit'])
+                positions = []
+
+                # Extract each position from file and add to list
+                for position in row['positie'].split(','):
+                    if position.strip('[] ') != '':
+                        positions.append(position.strip('[] '))
+
+                batteries[battery_id] = Battery(battery_id, positions[0], positions[1], row['capaciteit'])
+                battery_id += 1
             
         return batteries
 
@@ -38,8 +47,9 @@ class Grid():
             reader = csv.DictReader(in_file)
             house_id = 1
 
+            # Create House object with data from file
             for row in reader:
-                houses[house_id] = House(row['x'], row['y'], row['maxoutput'])
+                houses[house_id] = House(house_id, row['x'], row['y'], row['maxoutput'])
                 house_id += 1
             
         return houses
