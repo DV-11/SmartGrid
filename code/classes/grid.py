@@ -21,7 +21,7 @@ class Grid():
             line = f.readline()
             line = line.split(',')
             while len(line) == 3:
-                new_battery = Battery(line[0].rstrip('\"'), line[1].rstrip('"\"'), line[2].rstrip())
+                new_battery = Battery(line[0].replace("\", """), line[1].rstrip('"\"'), line[2].rstrip())
                 coordinates = (line[0] + line[1])
                 self.all_batteries.update({coordinates:new_battery})
                 line = f.readline()
