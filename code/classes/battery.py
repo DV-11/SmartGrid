@@ -1,11 +1,11 @@
 import csv
 
 class Battery():
-    def __init__(self, position, capacity):
-        self.id = 0
-        # self.x_coordinate = x
-        # self.y_coordinate = y
-        self.position = position
+    def __init__(self, battery_id, x, y, capacity):
+        self.id = battery_id
+        self.x_position = x
+        self.y_position = y
+        # self.position = position
         self.capacity = capacity
         self.reserved_capacity = 0
         self.cables = []
