@@ -7,3 +7,4 @@ class House():
         self.y_coordinate = y
         self.output = output
         self.cables = []
+        self.battery = None
