@@ -54,5 +54,6 @@ def make_scatter(batteries_data, houses_data):
         plt.plot(points_x, points_y, c='black')
 
     plt.show()
+    plt.savefig('visualization.png')
  
 
