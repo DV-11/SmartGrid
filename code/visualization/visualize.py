@@ -1,7 +1,5 @@
 import numpy as np
-import PyQt4
 import matplotlib
-matplotlib.use('qt4agg')
 import matplotlib.pyplot as plt
 
 def make_scatter(batteries_data, houses_data):

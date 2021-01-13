@@ -17,6 +17,15 @@ if __name__ == "__main__":
     for House in grid.all_houses.values():
         create_cable(House, House.battery)
 
+    # Calculates cost
+    total_cost = 0
+    for Battery in grid.all_batteries.values():
+        total_cost += 5000
+
+    for House in grid.all_houses.values():
+        total_cost += (len(House.cables) - 1) * 9
+
+    print(total_cost)
     # Create output file
     with open('output4.json', 'w') as f:
         f.write(grid.json())
