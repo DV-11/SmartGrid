@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 def make_scatter(batteries_data, houses_data):
