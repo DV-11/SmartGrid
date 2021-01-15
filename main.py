@@ -9,7 +9,7 @@ import json
 if __name__ == "__main__":
     district = "district-1"
 
-    # Create a grid from our data
+    # Create a grid from data
     grid = grid.Grid(f"data/{district}/{district}_batteries.csv", f"data/{district}/{district}_houses.csv")
 
     # Runs random algorithm

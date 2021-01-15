@@ -8,3 +8,5 @@ class House():
         self.output = output
         self.cables = []
         self.battery = None
+        self.distance = 0
+        self.destination = None
