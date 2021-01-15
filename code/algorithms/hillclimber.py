@@ -4,7 +4,6 @@ import copy
 class hillclimber():
 
     def __init__(self, grid):
-        self.grid = grid
         if grid.is_solution() == False:
             raise Exception("hillclimber should only be called with a solved grid!")
         self.best_grid = copy.deepcopy(grid)

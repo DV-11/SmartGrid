@@ -52,6 +52,14 @@ class Grid():
     def is_solution(self):
         # Only checks if capacity has not been reached, does not check cables!
         for Battery in self.all_batteries.values():
-            if Battery.capacity < Battery.reserved_capacity:
+            if float(Battery.capacity) < Battery.reserved_capacity:
                 return False
         return True
+
+    def calculate_cost(self):
+        total_cost = 0
+        for Battery in self.all_batteries.values():
+            total_cost += 5000
+        for House in self.all_houses.values():
+            total_cost += (len(House.cables) - 1) * 9
+        return total_cost
