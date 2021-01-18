@@ -7,19 +7,19 @@ class hillclimber():
         if grid.is_solution() == False:
             raise Exception("hillclimber should only be called with a solved grid!")
         self.best_grid = copy.deepcopy(grid)
+        self.no_improvement_count = 0
+        self.n= 0
+        self.mutation_count = 0
 
     def create_shared_cable(self, house, battery):
         pass
 
-    def mutate_house_cable(self):
-        pass
+    def find_to_mutate(self):
+        houses = []
+        return houses
 
-    def mutate_grid(self):
-        pass
-
-    def check_solution(self): 
+    def mutate_house_cable(self, house):
         pass
 
     def run(self):
-        pass
-
+        return self.best_grid

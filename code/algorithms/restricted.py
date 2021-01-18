@@ -1,6 +1,7 @@
 import random
 import copy
 from code.algorithms.greedy import find_distance
+from code.algorithms.randomize import create_cable
 
 
 class restricted_greedy:
@@ -33,11 +34,14 @@ class restricted_greedy:
                 House.battery = closest_battery
             for i in capacities_and_outputs:
                 if i[0] == closest_battery: i[2] = i[2] + float(House.output)
+ 
             
         for i in capacities_and_outputs:
             print(i[0].x_coordinate, i[0].y_coordinate, i[1], i[2])
         
-
+        for House in grid.all_houses.values():
+            create_cable(House, House.battery)   
+            
         return grid
 
 

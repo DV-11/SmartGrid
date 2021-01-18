@@ -30,8 +30,7 @@ if __name__ == "__main__":
     chosen_algorithm = all_algorithms.get(chosen_algorithm)
     grid = chosen_algorithm.run(grid)
     
-    for House in grid.all_houses.values():
-        create_cable(House, House.battery)
+    
 
     # Calculates cost
     print("Total cost:", grid.calculate_cost())

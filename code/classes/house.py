@@ -10,3 +10,4 @@ class House():
         self.battery = None
         self.distance = 0
         self.destination = None
+        self.direction = []
