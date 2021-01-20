@@ -52,7 +52,23 @@ def make_scatter(batteries_data, houses_data):
             points_x.append(j[0])
             points_y.append(j[1])
 
-        plt.plot(points_x, points_y, c='black')
+        if i.battery == 1:
+            plt.plot(points_x, points_y, c='green')
+
+        elif i.battery == 2:
+            plt.plot(points_x, points_y, c='gray')
+
+        elif i.battery == 3:
+            plt.plot(points_x, points_y, c='orange')
+        
+        elif i.battery == 4:
+            plt.plot(points_x, points_y, c='purple')
+
+        elif i.battery == 5:
+            plt.plot(points_x, points_y, c='brown')
+        
+        else:
+            plt.plot(points_x, points_y, c='black')
 
     plt.show()
     plt.savefig('visualization.png')
