@@ -35,7 +35,7 @@ if __name__ == "__main__":
     grid = chosen_algorithm.run(grid)
     
     # Print cost
-    print(f'Total cost: {chosen_algorithm.calculate_cost(grid)}')
+    print('Total cost:',f'{chosen_algorithm.calculate_cost(grid)}')
 
     # plot batteries, houses, and cables onto a grid as a scatter plot 
     make_scatter(grid.all_batteries.values(), grid.all_houses.values())
