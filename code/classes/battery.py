@@ -6,15 +6,7 @@ class Battery():
         self.x_coordinate = x
         self.y_coordinate= y
         # self.position = position
-        self.capacity = capacity
-        self.reserved_capacity = 0
-        self.cables = []
+        self.capacity = float(capacity)
+        self.remaining_capacity = float(capacity)
+        self.cables = [tuple([self.x_coordinate, self.y_coordinate])]
         self.houses = []
-    
-    def add_house(self, house):
-        self.houses.append(house)
-        # self.reserved_capacity = self.reserved_capacity - house.output
-        self.reserved_capacity = self.reserved_capacity + house.output
-
-    def add_cable(self, cable):
-        self.cables.append(cable)

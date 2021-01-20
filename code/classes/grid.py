@@ -8,7 +8,7 @@ class Grid():
         self.size = 50
         self.all_batteries = self.load_batteries(battery_file)
         self.all_houses = self.load_houses(house_file)
-        self.all_cables = {}
+        self.all_cables = set()
         
     def json(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -52,14 +52,9 @@ class Grid():
     def is_solution(self):
         # Only checks if capacity has not been reached, does not check cables!
         for Battery in self.all_batteries.values():
-            if float(Battery.capacity) < Battery.reserved_capacity:
+            if float(Battery.remaining_capacity) > 0:
                 return False
         return True
 
     def calculate_cost(self):
-        total_cost = 0
-        for Battery in self.all_batteries.values():
-            total_cost += 5000
-        for House in self.all_houses.values():
-            total_cost += (len(House.cables) - 1) * 9
-        return total_cost
+        pass

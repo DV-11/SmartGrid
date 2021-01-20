@@ -38,9 +38,18 @@ class restricted_greedy:
  
         for House in grid.all_houses.values():
             create_cable(House, House.battery)   
-            
+ 
         # return grid of connected houses and batteries 
         return grid
+    
+    def calculate_cost(self, grid):
+        total_cost = 0
+        for Battery in grid.all_batteries.values():
+            total_cost += 5000
+        for House in grid.all_houses.values():
+            total_cost += (len(House.cables) - 1) * 9
+        
+        return total_cost   
 
 
 

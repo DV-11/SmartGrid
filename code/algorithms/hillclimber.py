@@ -5,7 +5,7 @@ class hillclimber():
 
     def __init__(self, grid):
         if grid.is_solution() == False:
-            raise Exception("hillclimber should only be called with a solved grid!")
+            pass
         self.best_grid = copy.deepcopy(grid)
         self.no_improvement_count = 0
         self.n= 0
@@ -21,5 +21,5 @@ class hillclimber():
     def mutate_house_cable(self, house):
         pass
 
-    def run(self):
+    def run(self, greedy):
         return self.best_grid
