@@ -30,10 +30,12 @@ if __name__ == "__main__":
 
     # Runs chosen algorithm
     chosen_algorithm = all_algorithms.get(chosen_algorithm)
+    if isinstance(chosen_algorithm, hillclimber):
+        grid = randomize_shared(grid).run(grid)
     grid = chosen_algorithm.run(grid)
     
     # Print cost
-    print(f'{chosen_algorithm.calculate_cost(grid)}')
+    print(f'Total cost: {chosen_algorithm.calculate_cost(grid)}')
 
     # plot batteries, houses, and cables onto a grid as a scatter plot 
     make_scatter(grid.all_batteries.values(), grid.all_houses.values())

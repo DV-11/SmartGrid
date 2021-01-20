@@ -7,6 +7,7 @@ class randomize_shared():
     def get_destination(self, house):
         shortest_distance = float('inf')
         for Battery in self.grid.all_batteries.values():
+           
             battery_cables = list(Battery.cables)
             for i in range(len(battery_cables)):
                 new_distance = self.get_distance(house.x_coordinate, house.y_coordinate, int(battery_cables[i][0]), int(battery_cables[i][1]))
@@ -58,4 +59,8 @@ class randomize_shared():
         return grid
     
     def calculate_cost(self, grid):
-        return len(grid.all_batteries.values()) * 5000 + len(grid.all_cables) * 9
+        cable_cost = 0
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(Battery.cables) * 9
+            cable_cost += 5000
+        return cable_cost
