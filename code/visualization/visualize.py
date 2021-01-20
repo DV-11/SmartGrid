@@ -56,7 +56,7 @@ def make_scatter(batteries_data, houses_data):
             plt.plot(points_x, points_y, c='green')
 
         elif i.battery == 2:
-            plt.plot(points_x, points_y, c='gray')
+            plt.plot(points_x, points_y, c='cyan')
 
         elif i.battery == 3:
             plt.plot(points_x, points_y, c='orange')
