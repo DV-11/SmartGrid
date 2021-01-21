@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from code.algorithms.restricted import restricted_greedy
 
-def make_scatter(batteries_data, houses_data):
+def make_scatter(batteries_data, houses_data, algorithm):
     
     # grab battery data
     batteries_x = []
@@ -52,23 +53,44 @@ def make_scatter(batteries_data, houses_data):
             points_x.append(j[0])
             points_y.append(j[1])
 
-        if i.battery == 1:
-            plt.plot(points_x, points_y, c='green')
+        if isinstance(algorithm, restricted_greedy): 
+            
+            if i.battery.id == 1:
+                plt.plot(points_x, points_y, c='green')
 
-        elif i.battery == 2:
-            plt.plot(points_x, points_y, c='cyan')
+            elif i.battery.id == 2:
+                plt.plot(points_x, points_y, c='cyan')
 
-        elif i.battery == 3:
-            plt.plot(points_x, points_y, c='orange')
+            elif i.battery.id == 3:
+                plt.plot(points_x, points_y, c='orange')
         
-        elif i.battery == 4:
-            plt.plot(points_x, points_y, c='purple')
+            elif i.battery.id == 4:
+                plt.plot(points_x, points_y, c='purple')
 
-        elif i.battery == 5:
-            plt.plot(points_x, points_y, c='brown')
+            elif i.battery.id == 5:
+                plt.plot(points_x, points_y, c='brown')
         
-        else:
-            plt.plot(points_x, points_y, c='black')
+            else:
+                plt.plot(points_x, points_y, c='black')
+
+        else: 
+            if i.battery == 1:
+                plt.plot(points_x, points_y, c='green')
+
+            elif i.battery == 2:
+                plt.plot(points_x, points_y, c='cyan')
+
+            elif i.battery == 3:
+                plt.plot(points_x, points_y, c='orange')
+        
+            elif i.battery == 4:
+                plt.plot(points_x, points_y, c='purple')
+
+            elif i.battery == 5:
+                plt.plot(points_x, points_y, c='brown')
+        
+            else:
+                plt.plot(points_x, points_y, c='black')
 
     plt.show()
     plt.savefig('visualization.png')
