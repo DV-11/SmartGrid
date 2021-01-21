@@ -8,6 +8,7 @@ import random
 from random import randrange
 import json 
 
+
 def sim_anneal(grid, repetitions):
     
     all_batteries = list(grid.all_batteries.values())
@@ -15,17 +16,20 @@ def sim_anneal(grid, repetitions):
     score = grid.calculate_cost()
 
     for i in range(repetitions):
-        
         temp_grid = grid
         house = None
         stopper = randrange(len(temp_grid.all_houses.values()))
         counter = 0
+
         for i in temp_grid.all_houses.values():
             if counter == stopper:
                 house = i
-            counter = counter + 1
+
+            counter += 1
+
         house.battery = random.choice(all_batteries)
         new_score = temp_grid.calculate_cost()
+        
         if new_score < score:
             grid = temp_grid
 

@@ -7,7 +7,6 @@ from code.algorithms.hillclimber import hillclimber
 from code.algorithms.randomize2 import randomize_shared
 
 import json 
-# from code.visualization import visualize as visualization
 
 
 if __name__ == "__main__":
@@ -49,6 +48,6 @@ if __name__ == "__main__":
 
     # Creates output file
     grid.all_cables = list(grid.all_cables)
-    with open('output4.json', 'w') as f:
+    with open('output.json', 'w') as f:
         f.write(grid.json())
   

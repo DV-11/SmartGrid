@@ -5,7 +5,6 @@ class Battery():
         self.id = battery_id
         self.x_coordinate = x
         self.y_coordinate= y
-        # self.position = position
         self.capacity = float(capacity)
         self.remaining_capacity = float(capacity)
         self.cables = [tuple([self.x_coordinate, self.y_coordinate])]

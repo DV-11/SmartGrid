@@ -14,8 +14,10 @@ class Grid():
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
     def load_batteries(self, source_file):
-        """Load all batteries."""
-        batteries = {} # {position: Battery object}
+        """
+        Load all batteries from source file and adds them as an object in a dictionary.
+        """
+        batteries = {}
 
         with open (source_file) as in_file:
             reader = csv.DictReader(in_file)
@@ -35,7 +37,9 @@ class Grid():
         return batteries
 
     def load_houses(self, source_file):
-        """Load all houses."""
+        """
+        Load all houses from source file and adds them as an object in a dictionary.
+        """
         houses = {} # {id: House object}
 
         with open (source_file) as in_file:
@@ -50,10 +54,13 @@ class Grid():
         return houses
 
     def is_solution(self):
-        # Only checks if capacity has not been reached, does not check cables!
+        """
+        Checks for battery capacity constraint. *Note: does not check for cables
+        """
         for Battery in self.all_batteries.values():
             if float(Battery.remaining_capacity) > 0:
                 return False
+
         return True
 
     def calculate_cost(self):

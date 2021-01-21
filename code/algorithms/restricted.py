@@ -19,7 +19,6 @@ class restricted_greedy:
 
         # find the closest house to connect 
         for House in grid.all_houses.values():
-            
             closest_distance = 100000000
             closest_battery = None
 
@@ -29,13 +28,14 @@ class restricted_greedy:
                 print(Battery[1])
                 print(Battery[2])
                 distance = find_distance(House, Battery[0])
+                
                 if distance < closest_distance and Battery[2] + float(House.output) < Battery[1]:
                     closest_battery = Battery[0]
                     closest_distance = distance
                     
-
             # connect house to battery and update current output 
                 House.battery = closest_battery
+            
             for i in capacities_and_outputs:
                 if i[0] == closest_battery: i[2] = i[2] + float(House.output)
  
@@ -47,8 +47,10 @@ class restricted_greedy:
     
     def calculate_cost(self, grid):
         total_cost = 0
+
         for Battery in grid.all_batteries.values():
             total_cost += 5000
+
         for House in grid.all_houses.values():
             total_cost += (len(House.cables) - 1) * 9
         
