@@ -3,6 +3,7 @@ import random
 class randomize_shared():
     def __init__(self, grid):
         self.grid = grid 
+        self.retry = False
 
     def get_destination(self, house):
         """
@@ -10,14 +11,20 @@ class randomize_shared():
         """
 
         shortest_distance = float('inf')
+        no_battery_found = 0
 
         # Loops through all batteries and finds all cables connected to them to find nearest destination
         for Battery in self.grid.all_batteries.values():
             battery_cables = list(Battery.cables)
-
+            
             if Battery.remaining_capacity - house.output < 0:
+                no_battery_found += 1
+                if no_battery_found >= 5:
+                    self.retry = True
+                    break
                 continue
             
+            no_battery_found = 0
             for cable in range(len(battery_cables)):
                 new_distance = self.get_distance(house.x_coordinate, house.y_coordinate, 
                 int(battery_cables[cable][0]), int(battery_cables[cable][1]))
@@ -29,8 +36,9 @@ class randomize_shared():
                     house.destination = tuple([int(battery_cables[cable][0]), int(battery_cables[cable][1])])
                     house.battery = Battery.id
 
-        house.distance = self.get_distance(house.x_coordinate, house.y_coordinate, house.destination[0], house.destination[1])
-        self.grid.all_batteries.get(house.battery).remaining_capacity -= house.output
+        if self.retry == False:
+            house.distance = self.get_distance(house.x_coordinate, house.y_coordinate, house.destination[0], house.destination[1])
+            self.grid.all_batteries.get(house.battery).remaining_capacity -= house.output
         
     def get_distance(self, origin_x, origin_y, destination_x, destination_y):
         """
@@ -78,6 +86,20 @@ class randomize_shared():
         random.shuffle(all_keys)
         for key in range(len(all_keys)):
             self.get_destination(self.grid.all_houses.get(all_keys[key]))
+            if self.retry:
+                print('found error in solution, retrying')
+                self.grid.all_cables.clear()
+                for Battery in self.grid.all_batteries.values():
+                    Battery.cables = [tuple([Battery.x_coordinate, Battery.y_coordinate])]
+                    Battery.remaining_capacity = Battery.capacity
+                    Battery.houses.clear()
+                for House in self.grid.all_houses.values():
+                    House.cables.clear()
+                    House.destination = None
+                    House.distance = 0
+                    House.latest_cable = [House.x_coordinate, House.y_coordinate]
+                self.retry = False
+                self.run(self.grid)
             self.create_new_cable(self.grid.all_houses.get(all_keys[key]))
         return grid
     
