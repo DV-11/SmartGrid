@@ -14,8 +14,10 @@ class randomize_shared():
         # Loops through all batteries and finds all cables connected to them to find nearest destination
         for Battery in self.grid.all_batteries.values():
             battery_cables = list(Battery.cables)
+
             if Battery.remaining_capacity - house.output < 0:
                 continue
+            
             for cable in range(len(battery_cables)):
                 new_distance = self.get_distance(house.x_coordinate, house.y_coordinate, 
                 int(battery_cables[cable][0]), int(battery_cables[cable][1]))
