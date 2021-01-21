@@ -25,6 +25,9 @@ class restricted_greedy:
 
         # make sure the house is the closest and does not go over the max capacity 
             for Battery in capacities_and_outputs:
+                print(Battery[0])
+                print(Battery[1])
+                print(Battery[2])
                 distance = find_distance(House, Battery[0])
                 if distance < closest_distance and Battery[2] + float(House.output) < Battery[1]:
                     closest_battery = Battery[0]
