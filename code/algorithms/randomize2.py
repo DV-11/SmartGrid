@@ -5,17 +5,18 @@ class randomize_shared():
         self.grid = grid 
         self.retry = False
 
-    def get_destination(self, house):
+    def get_destination(self, house):   #get_nearest_destination?
         """
         Finds closest battery or cable from house.
         """
         shortest_distance = float('inf')
         no_battery_found = 0
 
-        # Loops through all batteries and finds all cables connected to them to find nearest destination
+        # Loops through all batteries and finds all cables connected to each battery?
         for Battery in self.grid.all_batteries.values():
             battery_cables = list(Battery.cables)
             
+            # Find new solution when all batteries are full
             if Battery.remaining_capacity - house.output < 0:
                 no_battery_found += 1
 
@@ -27,17 +28,18 @@ class randomize_shared():
             
             no_battery_found = 0
 
+            # Finds distance for each viable destination
             for cable in range(len(battery_cables)):
                 new_distance = self.get_distance(house.x_coordinate, house.y_coordinate, 
-                int(battery_cables[cable][0]), int(battery_cables[cable][1]))
+                                int(battery_cables[cable][0]), int(battery_cables[cable][1]))
                 
-                # Updates shortest distance and saves both coordinates of cable/battery as well as the 
-                # id of the corresponding battery for retrieving it later.
+                # Updates shortest distance and saves destination coordinates and battery ID
                 if new_distance < shortest_distance:
                     shortest_distance = new_distance
                     house.destination = tuple([int(battery_cables[cable][0]), int(battery_cables[cable][1])])
                     house.battery = Battery.id
 
+        # Update distance and remaining capacity when valid destination is found
         if self.retry == False:
             house.distance = self.get_distance(house.x_coordinate, house.y_coordinate, house.destination[0], house.destination[1])
             self.grid.all_batteries.get(house.battery).remaining_capacity -= house.output
@@ -46,15 +48,8 @@ class randomize_shared():
         """
         Finds distance between two points using their coordinates.
         """
-        horizontal_distance = int(origin_x) - destination_x
-
-        if horizontal_distance < 0:
-            horizontal_distance *= -1
-
-        vertical_distance = int(origin_y) - destination_y
-
-        if vertical_distance < 0:
-            vertical_distance *= -1
+        horizontal_distance = abs(int(origin_x) - destination_x)
+        vertical_distance = abs(int(origin_y) - destination_y)
 
         return vertical_distance + horizontal_distance
 
@@ -91,16 +86,15 @@ class randomize_shared():
         Randomizes order of all houses and creates a path to a battery or existing cable
         in a semi-random fashion.
         """
-        # Loop through all houses in grid
+        # Retrieves all houses and orders them randomly
         all_keys = list(self.grid.all_houses.keys())
-        # Randomize order of keys
         random.shuffle(all_keys)
 
         for key in range(len(all_keys)):
             self.get_destination(self.grid.all_houses.get(all_keys[key]))
 
             if self.retry:
-                print('found error in solution, retrying')
+                print('Solution invalid, retrying.')
                 self.grid.all_cables.clear()
 
                 for Battery in self.grid.all_batteries.values():
