@@ -38,7 +38,7 @@ if __name__ == "__main__":
     print('Total cost:',f'{chosen_algorithm.calculate_cost(grid)}')
 
     # plot batteries, houses, and cables onto a grid as a scatter plot 
-    make_scatter(grid.all_batteries.values(), grid.all_houses.values())
+    make_scatter(grid.all_batteries.values(), grid.all_houses.values(), chosen_algorithm)
 
     # Creates output file
     grid.all_cables = list(grid.all_cables)
