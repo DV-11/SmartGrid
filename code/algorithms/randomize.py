@@ -1,14 +1,19 @@
 import random
-import copy
 
+# randomly assign a battery to each house to be connected without regard for outputs and capacities 
 def random_assignment(grid):
+
+    # take all batteries
     all_batteries = list(grid.all_batteries.values())
 
+    # randomly assign a batterie to each house
     for House in grid.all_houses.values():
         House.battery = random.choice(all_batteries)
 
+    # return grid with assignments 
     return grid
 
+# get the coordenates of a cable between a house and a battery 
 def create_cable(house, battery):
     # set coordinates to ints 
     battery_c = [int(battery.x_coordinate),int(battery.y_coordinate)]
