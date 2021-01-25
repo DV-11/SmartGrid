@@ -11,3 +11,13 @@ class Battery():
         self.houses = []
         self.battery_price = 5000
         self.cable_price = 9
+    
+    def is_valid(self):
+        """
+        Returns whether the battery is valid. 
+        A battery is valid when the capacity is not exceeded.
+        """
+        if self.remaining_capacity >= 0:
+            return True
+
+        return False

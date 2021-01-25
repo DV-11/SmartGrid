@@ -64,4 +64,35 @@ class Grid():
         return True
 
     def calculate_cost(self):
-        pass
+        """
+        Returns the sum of the cost of all cables on the grid.
+        """
+        cable_cost = 0
+
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
+
+        return cable_cost
+
+    def get_violations(self):
+        """
+        Returns the ids of all batteries that have exceeded the battery capacity.
+        """
+        violations = []
+
+        for battery in self.all_batteries.values():
+            if not battery.is_valid():
+                violations.append(battery)
+        
+        return violations
+
+    def get_unattached_house(self):
+        """
+        Returns the first unattached house.
+        """
+        for house in self.all_houses.values():
+            if not house.has_cable():
+                return house
+        
+        return None

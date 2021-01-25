@@ -1,15 +1,8 @@
-from code.classes import grid, battery, house
-from code.algorithms.randomize import random_assignment, create_cable
-from code.visualization.visualize import make_scatter
-from code.algorithms.greedy import greedy_assignment, find_distance
-from code.algorithms.restricted import restricted_greedy
-from code.algorithms.hillclimber import hillclimber
-import random
-from random import randrange
-import json 
-
 import random
 import math
+
+from code.algorithms.hillclimber import hillclimber
+
 
 class SimulatedAnnealing(HillClimber):
     """
@@ -41,18 +34,17 @@ class SimulatedAnnealing(HillClimber):
         Also sometimes accepts solutions that are worse, depending on the current
         temperature.
         """
-        # Calculate new value???
-        # new_value = new_grid.calculate_value() !!!!!!!!
-        # old_value = self.value???
+        # new_cost = new_grid.calculate_cost()
+        # old_cost = self.cost
 
         # Calculate the probability of accepting this new grid
-        delta = new_value - old_value
+        delta = new_cost - old_cost
         probability = math.exp(-delta / self.T)
 
         # Pull a random number between 0 and 1 and see if we accept the graph!
         if random.random() < probability:
             self.grid = new_grid
-            self.value = new_value
+            self.cost = new_cost
 
         # Update the temperature
         self.update_temperature()

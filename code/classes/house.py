@@ -12,3 +12,9 @@ class House():
         self.destination = None
         self.to_battery = False
         self.latest_cable = [self.x_coordinate, self.y_coordinate]
+
+    def has_cable(self):
+        # ??? Does this work with a list??
+        return self.cables is not None
+
+    
