@@ -27,6 +27,20 @@ To run an example:
 python main.py
 ```
 
+You'll be prompted to choose one of the districts:
+```
+Choose a district (1, 2, 3)
+```
+
+Simply input the number of one of the districts to continue.
+Then you must select which algorithm you want to run: 
+```
+Choose an algorithm dict_keys(['restricted_greedy', 'hillclimber', 'shared_randomize']) 
+```
+
+Input the name of the desired algorithm as written on the prompt. 
+After runing the algorithm, an image of the resulting grid will be displayed, as well as the total cost. 
+
 ### Structure
 
 The following list describes the most important folders and files from the project, and their location:
