@@ -2,7 +2,7 @@ import random
 
 class randomize_shared():
     def __init__(self, grid):
-        self.grid = grid 
+        self.grid = None
         self.retry = False
 
     def get_destination(self, house):
@@ -91,6 +91,7 @@ class randomize_shared():
         Randomizes order of all houses and creates a path to a battery or existing cable
         in a semi-random fashion.
         """
+        self.grid = grid
         # Loop through all houses in grid
         all_keys = list(self.grid.all_houses.keys())
         # Randomize order of keys
@@ -113,14 +114,13 @@ class randomize_shared():
                     House.destination = None
                     House.distance = 0
                     House.latest_cable = [House.x_coordinate, House.y_coordinate]
-
+            
                 self.retry = False
                 self.run(self.grid)
 
             self.create_new_cable(self.grid.all_houses.get(all_keys[key]))
-
         return grid
-    
+
     def calculate_cost(self, grid):
         """
         Calculates the cost of this configuration.
@@ -128,7 +128,7 @@ class randomize_shared():
         cable_cost = 0
 
         for Battery in grid.all_batteries.values():
-            cable_cost += len(Battery.cables) * 9
-            cable_cost += 5000
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
 
         return cable_cost

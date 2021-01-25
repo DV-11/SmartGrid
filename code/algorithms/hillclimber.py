@@ -4,7 +4,7 @@ import copy
 class hillclimber():
 
     def __init__(self, grid):
-        self.best_grid = copy.deepcopy(grid)
+        self.best_grid = None
         self.no_improvement_count = 0
         self.n = 0
         self.houses_to_change = 5
@@ -31,30 +31,36 @@ class hillclimber():
 
     def mutate_house_cable(self, houses):
         # delete existing cables
+        all_gone = []
         for House in houses:
             self.best_grid.all_batteries.get(House.battery).cables = list(set(self.best_grid.all_batteries.get(House.battery).cables))
             
             for i in range(len(House.cables)):
-                self.best_grid.all_batteries.get(House.battery).cables.remove(House.cables[i])
-                House.cable.remove(House.cables[i])
+                if i == 0:
+                    continue
+                if House.cables[i] in all_gone:
+                    continue
+                self.best_grid.all_batteries.get(House.battery).cables.remove(tuple(House.cables[i]))
+                all_gone.append(House.cables[i])
+            House.cables.clear()
+            House.latest_cable = [House.x_coordinate, House.y_coordinate]
             
-
         # create new cables
         for House in houses:
             self.create_shared_cable(House)
 
     def run(self, grid):
-        self.best_grid = grid
+        self.best_grid = copy.deepcopy(grid)
         houses = self.find_to_mutate(grid)
         self.mutate_house_cable(houses)
 
-        return grid
+        return self.best_grid
 
     def calculate_cost(self, grid):
         cable_cost = 0
 
         for Battery in grid.all_batteries.values():
-            cable_cost += len(Battery.cables) * 9
-            cable_cost += 5000
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
 
         return cable_cost
