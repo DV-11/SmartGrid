@@ -13,7 +13,7 @@ class HillClimber:
             raise Exeption("HillClimber requires a complete solution.")
         
         self.grid = copy.deepcopy(grid)
-        self.value = grid.calculate_value()
+        self.cost = grid.calculate_cost()
 
     def mutate_houses(self, new_grid):
         """
@@ -34,7 +34,12 @@ class HillClimber:
         """
         Checks and accepts better solutions than the current solution.
         """
-        # TODO
+        new_cost = new_grid.calculate_cost()
+        old_cost = self.cost
+
+        if new_cost <= old_cost:
+            self.grid = new_grid
+            self.cost = new_cost
 
     def run(self, iterations, verbose=False, mutate_houses_number=1):
         """
@@ -44,7 +49,7 @@ class HillClimber:
 
         for iteration in range(iterations):
             # Nice trick to only print if variable is set to True
-            print(f'Iteration {iteration}/{iterations}, current value: {self.value}') if verbose else None
+            print(f'Iteration {iteration}/{iterations}, current cost: {self.cost}') if verbose else None
 
             # Create a copy of the graph to simulate the change
             new_grid = copy.deepcopy(self.grid)

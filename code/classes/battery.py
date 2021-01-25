@@ -12,7 +12,7 @@ class Battery():
         self.battery_price = 5000
         self.cable_price = 9
     
-    def is_valid(self):
+    def is_valid(self): # CHECK IF THIS WORKS
         """
         Returns whether the battery is valid. 
         A battery is valid when the capacity is not exceeded.

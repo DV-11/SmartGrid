@@ -13,7 +13,7 @@ class House():
         self.to_battery = False
         self.latest_cable = [self.x_coordinate, self.y_coordinate]
 
-    def has_cable(self):
+    def has_cable(self):    # CHECK IF THIS WORKS
         # ??? Does this work with a list??
         return self.cables is not None
 

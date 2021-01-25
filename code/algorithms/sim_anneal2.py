@@ -28,14 +28,14 @@ class SimulatedAnnealing(HillClimber):
         alpha = 0.99
         self.T = self.T * alpha
 
-    def check_solution(self, grid):
+    def check_solution(self, new_grid):
         """
         Checks and accepts better solutions than the current solution.
         Also sometimes accepts solutions that are worse, depending on the current
         temperature.
         """
-        # new_cost = new_grid.calculate_cost()
-        # old_cost = self.cost
+        new_cost = new_grid.calculate_cost()
+        old_cost = self.cost
 
         # Calculate the probability of accepting this new grid
         delta = new_cost - old_cost
