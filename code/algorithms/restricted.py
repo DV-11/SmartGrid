@@ -1,5 +1,3 @@
-import random
-import copy
 from code.algorithms.greedy import find_distance
 from code.algorithms.randomize import create_cable
 from operator import itemgetter
@@ -14,6 +12,8 @@ class restricted_greedy:
 
         # make a list with each battery, max capacity and the current output
         capacities_and_outputs = []
+
+        # make a list with houses and their outputs 
         by_output= []
 
         for Battery in all_batteries:
@@ -23,6 +23,8 @@ class restricted_greedy:
         for House in grid.all_houses.values():
             by_output.append([House, float(House.output)])
         
+
+        # order houses by output for district 3
         if district_number == 3:
             by_output = sorted(by_output, key=itemgetter(1), reverse= True)
 
@@ -51,14 +53,18 @@ class restricted_greedy:
         return grid
     
     def calculate_cost(self, grid):
+
+        # initial empty cost
         total_cost = 0
 
-        for Battery in grid.all_batteries.values():
-            total_cost += 5000
+        # add cost of batteries
+        total_cost += (5000 * len(grid.all_batteries.values()))
 
+        # add cost of cables
         for House in grid.all_houses.values():
             total_cost += (len(House.cables) - 1) * 9
         
+        # return total
         return total_cost   
 
 
