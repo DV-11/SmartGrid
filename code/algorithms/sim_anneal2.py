@@ -42,7 +42,7 @@ class SimulatedAnnealing(HillClimber):
         temperature.
         """
         # Calculate new value???
-        # new_value = new_grid.calculate_value()
+        # new_value = new_grid.calculate_value() !!!!!!!!
         # old_value = self.value???
 
         # Calculate the probability of accepting this new grid
