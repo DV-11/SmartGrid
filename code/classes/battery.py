@@ -9,3 +9,5 @@ class Battery():
         self.remaining_capacity = float(capacity)
         self.cables = [tuple([self.x_coordinate, self.y_coordinate])]
         self.houses = []
+        self.battery_price = 5000
+        self.cable_price = 9
