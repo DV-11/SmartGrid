@@ -31,7 +31,11 @@ if __name__ == "__main__":
     chosen_algorithm = all_algorithms.get(chosen_algorithm)
     if isinstance(chosen_algorithm, hillclimber):
         grid = randomize_shared(grid).run(grid)
-    grid = chosen_algorithm.run(grid)
+
+    if isinstance(chosen_algorithm, restricted_greedy):
+        grid = restricted_greedy(grid).run(grid,district_number)
+    else:
+        grid = chosen_algorithm.run(grid)
     
     # Print cost
     print('Total cost:',f'{chosen_algorithm.calculate_cost(grid)}')
