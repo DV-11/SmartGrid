@@ -23,11 +23,11 @@ if __name__ == "__main__":
     total_capacity = 0
     for Battery in grid.all_batteries.values():
         total_capacity += Battery.capacity
-    print(total_capacity)
+
     total_output = 0
     for House in grid.all_houses.values():
         total_output += House.output
-    print(total_output)
+
     # Allows user to choose an algorithm
     all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid)}
     chosen_algorithm = None
