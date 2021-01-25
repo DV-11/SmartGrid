@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from code.algorithms.restricted import restricted_greedy
 
+# create a scatter plot on a grid to represent the districts
 def make_scatter(batteries_data, houses_data, algorithm):
     
     # grab battery data
@@ -53,8 +54,10 @@ def make_scatter(batteries_data, houses_data, algorithm):
             points_x.append(j[0])
             points_y.append(j[1])
 
+        # restricted algorithm returns a differnt output, so it needs a different approach 
         if isinstance(algorithm, restricted_greedy): 
             
+            # plot cables with different colors depending on the target battery 
             if i.battery.id == 1:
                 plt.plot(points_x, points_y, c='green')
 
@@ -69,10 +72,8 @@ def make_scatter(batteries_data, houses_data, algorithm):
 
             elif i.battery.id == 5:
                 plt.plot(points_x, points_y, c='brown')
-        
-            else:
-                plt.plot(points_x, points_y, c='black')
 
+        # plot cables with different colors depending on the target battery, for all the other algorithms  
         else: 
             if i.battery == 1:
                 plt.plot(points_x, points_y, c='green')
@@ -88,10 +89,8 @@ def make_scatter(batteries_data, houses_data, algorithm):
 
             elif i.battery == 5:
                 plt.plot(points_x, points_y, c='brown')
-        
-            else:
-                plt.plot(points_x, points_y, c='black')
 
+    # display the resulting plot and also save it as a png image
     plt.show()
     plt.savefig('visualization.png')
  
