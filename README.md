@@ -1,7 +1,9 @@
 # SmartGrid
 
-To minimize the costs on the implementation of a Smart Grid, cables need to be installed on an efficient manner which have a tremendous amount of possibilities. In this project we will try to write an algorithm that returns the most efficient solution.
 
+Many houses nowadays have their own solar panels to produce the energy that powers the electronics in the house. Occasionally, they even produce more energy than they consume. This surplus of energy can potentially be returned to the energy providers, but this would require special infrastructure. All houses in a district must be connected to the available batteries in that same distrcit to collect the excess of energy.  However, this infrastructure is not free. Each battery costs $5 000 and each cable segment costs $9. 
+
+There are 150 houses and 5 batteries located on a grid in each of the 3 districts. Our job is to find a way to connect each house to a battery while minimizing costs. With such a tremendous amount of possible combinations, we'll try to use different algorithms to find the optimal soultion. 
 ## Getting started
 
 ### Requirements
