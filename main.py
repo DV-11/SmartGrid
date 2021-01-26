@@ -4,10 +4,9 @@ from code.visualization.visualize import make_scatter
 from code.algorithms.greedy import greedy_assignment, find_distance
 from code.algorithms.restricted import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
-from code.algorithms.randomize2 import randomize_shared
+from code.algorithms.random_greedy import randomize_shared
 
 import json 
-# from code.visualization import visualize as visualization
 
 
 if __name__ == "__main__":
@@ -21,7 +20,14 @@ if __name__ == "__main__":
 
     # Create a grid from data
     grid = grid.Grid(f"data/{district}/{district}_batteries.csv", f"data/{district}/{district}_houses.csv")
- 
+    total_capacity = 0
+    for Battery in grid.all_batteries.values():
+        total_capacity += Battery.capacity
+
+    total_output = 0
+    for House in grid.all_houses.values():
+        total_output += House.output
+
     # Allows user to choose an algorithm
     all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid)}
     chosen_algorithm = None
@@ -32,7 +38,11 @@ if __name__ == "__main__":
     chosen_algorithm = all_algorithms.get(chosen_algorithm)
     if isinstance(chosen_algorithm, hillclimber):
         grid = randomize_shared(grid).run(grid)
-    grid = chosen_algorithm.run(grid)
+
+    if isinstance(chosen_algorithm, restricted_greedy):
+        grid = restricted_greedy(grid).run(grid,district_number)
+    else:
+        grid = chosen_algorithm.run(grid)
     
     # Print cost
     print('Total cost:',f'{chosen_algorithm.calculate_cost(grid)}')
@@ -42,6 +52,6 @@ if __name__ == "__main__":
 
     # Creates output file
     grid.all_cables = list(grid.all_cables)
-    with open('output4.json', 'w') as f:
+    with open('output.json', 'w') as f:
         f.write(grid.json())
   

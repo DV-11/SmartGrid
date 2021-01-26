@@ -14,8 +14,10 @@ class Grid():
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
     def load_batteries(self, source_file):
-        """Load all batteries."""
-        batteries = {} # {position: Battery object}
+        """
+        Load all batteries from source file and adds them as an object in a dictionary.
+        """
+        batteries = {}
 
         with open (source_file) as in_file:
             reader = csv.DictReader(in_file)
@@ -35,7 +37,9 @@ class Grid():
         return batteries
 
     def load_houses(self, source_file):
-        """Load all houses."""
+        """
+        Load all houses from source file and adds them as an object in a dictionary.
+        """
         houses = {} # {id: House object}
 
         with open (source_file) as in_file:
@@ -49,12 +53,46 @@ class Grid():
             
         return houses
 
-    def is_solution(self):
-        # Only checks if capacity has not been reached, does not check cables!
+    def is_solution(self): # CHECK IF THIS WORKS
+        """
+        Checks for battery capacity constraint. *Note: does not check for cables
+        """
         for Battery in self.all_batteries.values():
             if float(Battery.remaining_capacity) > 0:
                 return False
+
         return True
 
-    def calculate_cost(self):
-        pass
+    def calculate_cost(self): # CHECK IF THIS WORKS
+        """
+        Returns the sum of the cost of all cables on the grid.
+        """
+        cable_cost = 0
+
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
+
+        return cable_cost
+
+    def get_violations(self): # CHECK IF THIS WORKS
+        """
+        Returns the ids of all batteries that have exceeded the battery capacity.
+        """
+        violations = []
+
+        for battery in self.all_batteries.values():
+            if not battery.is_valid():
+                violations.append(battery)
+        
+        return violations
+
+    def get_unattached_house(self): # CHECK IF THIS WORKS
+        """
+        Returns the first unattached house.
+        """
+        for house in self.all_houses.values():
+            if not house.has_cable():
+                return house
+        
+        return None
