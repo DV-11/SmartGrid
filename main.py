@@ -4,7 +4,7 @@ from code.visualization.visualize import make_scatter
 from code.algorithms.greedy import greedy_assignment, find_distance
 from code.algorithms.restricted import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
-from code.algorithms.randomize2 import randomize_shared
+from code.algorithms.random_greedy import randomize_shared
 
 import json 
 
