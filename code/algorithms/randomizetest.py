@@ -118,10 +118,11 @@ class randomize_shared():
         in a semi-random fashion.
         """
         self.grid = grid
-        # Loop through all houses in grid
+        # Choose random order for looping alll houses    stap 1
         all_house_keys = list(self.grid.all_houses.keys())
-        random.shuffle(all_house_keys)        # stap 1??
+        random.shuffle(all_house_keys)        
 
+        # Find nearest battery or cable     stap 2
         for key in range(len(all_keys)):
             self.get_destination(self.grid.all_houses.get(all_keys[key]), self.grid)
 
@@ -129,37 +130,27 @@ class randomize_shared():
                 self.fix_error()
                 self.run(self.grid)
 
+            # Lay cable in the shortest manner with a random route      stap 3
             self.create_new_cable(self.grid.all_houses.get(all_keys[key]), self.grid)
 
         return grid
 
-    def calculate_cost(self, grid):
-        """
-        Calculates the cost of this configuration.
-        """
-        cable_cost = 0
 
-        for Battery in grid.all_batteries.values():
-            cable_cost += len(set(Battery.cables)) * Battery.cable_price
-            cable_cost += Battery.battery_price
-
-        return cable_cost
-    
     def fix_error(self):
         
-                print('Solution invalid, retrying.')
-                self.grid.all_cables.clear()
+        print('Solution invalid, retrying.')
+        self.grid.all_cables.clear()
 
-                for Battery in self.grid.all_batteries.values():
-                    Battery.cables = [tuple([Battery.x_coordinate, Battery.y_coordinate])]
-                    Battery.remaining_capacity = Battery.capacity
-                    Battery.houses.clear()
+        for Battery in self.grid.all_batteries.values():
+            Battery.cables = [tuple([Battery.x_coordinate, Battery.y_coordinate])]
+            Battery.remaining_capacity = Battery.capacity
+            Battery.houses.clear()
 
-                for House in self.grid.all_houses.values():
-                    House.cables.clear()
-                    House.destination = None
-                    House.distance = 0
-                    House.latest_cable = [House.x_coordinate, House.y_coordinate]
-            
-                self.retry = False
+        for House in self.grid.all_houses.values():
+            House.cables.clear()
+            House.destination = None
+            House.distance = 0
+            House.latest_cable = [House.x_coordinate, House.y_coordinate]
+    
+        self.retry = False
                 
