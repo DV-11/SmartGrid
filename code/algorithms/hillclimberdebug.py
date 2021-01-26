@@ -61,10 +61,11 @@ class hillclimberdebug(randomize_shared):
                 for cable in House.cables:
                     # If cables_to_remove matches, add house and battery to sets
                     if tuple(cable) in cables_to_remove:
-                        cables_to_remove.add(tuple(cable))
                         houses_to_change.add(House.id)
                         batteries_to_change.add(House.battery)
-            
+                        for i in House.cables:
+                            cables_to_remove.add(tuple(cable))
+
             # Stop the loop when ...
             if current_set_size == len(houses_to_change):
                 new_house_found = False
@@ -77,7 +78,7 @@ class hillclimberdebug(randomize_shared):
         houses_to_change = list(houses_to_change)
         for i in houses_to_change:
             key = grid.all_houses.get(i).battery
-            grid.all_batteries.get(key).capacity += grid.all_houses.get(i).output
+            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output
 
             # Finds house and removes cables from battery
             for cable in grid.all_houses.get(i).cables:

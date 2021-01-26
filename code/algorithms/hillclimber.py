@@ -2,7 +2,7 @@ import random
 import copy
 from .random_greedy import randomize_shared
 
-class hillclimber(randomize_shared):
+class test(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None

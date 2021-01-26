@@ -14,17 +14,42 @@ class randomize_shared():
 
     def random_reconfigure_house(grid, house, possibilities):
         """
-        Takes a house and assigns the house with one of the possibilities.
+        Takes a house and randomly re-connects to one of the available batteries.
         """
-        house.set_value(random.choice(possibilities))
+        house.disconnect_battery()
+        # fix broken cables?
+        house.connect_battery(random.choice(possibilities)) # possibilities is list of available batteries 
+
+    # def random_reconfigure_shared_house(grid, house, possibilities):
+    #     """
+    #     Takes a house and randomly re-connects to one of the available batteries while.
+    #     """
+    #     house.disconnect_battery()
+    #     # fix broken cables?
+    #     house.connect_battery(random.choice(possibilities)) # possibilities is list of available batteries 
     
     
     def random_reconfigure_houses(grid, houses, possibilities):
         """
-        Takes a list of houses and assigns each house with one of the possibilities.
+        Takes a list of houses and randomly re-connects each house to one of the available batteries.
         """
         for house in houses:
-            random_reconfigure_node(graph, node, possibilities)
+            random_reconfigure_house(grid, house, possibilities)
+
+        def random_reconfigure_shared_houses(grid, houses, possibilities):
+        """
+        Takes a list of houses and randomly re-connects each house to one of the available batteries.
+        """
+        for house in houses:
+            random_reconfigure_house(grid, house, possibilities)
+        
+        # fix broken cables
+        # for each house in all_houses
+            # if cables[-1] last coordinate != destination
+            # cables.clear()
+            # random_reconfigure_house(grid, house, possibilities):
+
+
     
     
     

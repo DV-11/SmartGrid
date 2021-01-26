@@ -97,3 +97,20 @@ class House():
         # Anything else?
         # lay_random_cable(origin, destination)
         pass
+
+    def disconnect_battery(self):
+        # self.battery = None
+        # self.cables.clear()
+        pass
+
+    def get_possibilities(self, all_batteries): # untested
+        """
+        Returns a list of all available batteries that can be assigned to this house.
+        """
+        available = []
+
+        for battery in all_batteries:
+            if battery.remaining_capacity >= battery.capacity:
+                available.append(battery)
+
+        return available
