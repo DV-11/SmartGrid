@@ -19,8 +19,8 @@ class HillClimber:
         """
         Changes the value of a couple random house cables with a new random valid configuration.
         """
-        # random_config = random.choice()
-        # available_houses = 
+        # random_house = random.choice(list(new_grid.all_houses.values()))
+        # available_batteries = random_house.get_possibilities(self.)
         # random_reconfigure_house(new_grid, random_config, available_houses)
 
     def mutate_grid(self, new_grid, number_of_houses=1):
@@ -28,7 +28,7 @@ class HillClimber:
         Changes the cables of a number of houses with a random valid configuration.
         """
         # for _ in range(number_of_houses):
-        #     self.mutate_single_house(new_grid)
+        #     self.mutate_houses(new_grid)
 
     def check_solution(self, new_grid):
         """

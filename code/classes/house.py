@@ -17,4 +17,19 @@ class House():
         # ??? Does this work with a list??
         return self.cables is not None
 
+    def find_nearest_battery(self):
+        pass
+
+    def find_nearest_battery_or_cable(self):
+        pass
+
+    def lay_cable(self):
+        pass
+
+    def connect_battery(self, battery):
+        self.battery = battery
+        # Anything else?
+        # lay_cable()?
+        
+
     
