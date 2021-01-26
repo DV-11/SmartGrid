@@ -12,3 +12,4 @@ class House():
         self.destination = None
         self.to_battery = False
         self.latest_cable = [self.x_coordinate, self.y_coordinate]
+        self.mark = False
