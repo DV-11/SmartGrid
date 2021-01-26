@@ -1,6 +1,6 @@
 import random
 import copy
-from .randomize2 import randomize_shared
+from .random_greedy import randomize_shared
 
 class hillclimber(randomize_shared):
 
