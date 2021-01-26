@@ -59,6 +59,7 @@ class hillclimber(randomize_shared):
         # Saves old grid
         self.grid = copy.deepcopy(grid)
         no_improvement = 0
+
         # Makes small changes every loop
         while no_improvement < self.n:
             new_grid = copy.deepcopy(self.grid)
@@ -68,6 +69,7 @@ class hillclimber(randomize_shared):
             print(self.calculate_cost(self.grid))
             print('new')
             print(self.calculate_cost(new_grid))
+            
             if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
                 no_improvement = 0
                 print("found better solution")
