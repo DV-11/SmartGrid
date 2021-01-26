@@ -2,7 +2,7 @@ import random
 import copy
 from .random_greedy import randomize_shared
 
-class test(randomize_shared):
+class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
@@ -186,7 +186,6 @@ class test(randomize_shared):
         # Returns best grid
         return self.grid
 
-<<<<<<< HEAD
     def calculate_cost(self, grid):
         cable_cost = 0
 
@@ -199,6 +198,4 @@ class test(randomize_shared):
     def fix_error(self):
         self.retry = False
         return self.grid
-=======
     
->>>>>>> 0336fc1b9b11247962b057431e9214606dc109df
