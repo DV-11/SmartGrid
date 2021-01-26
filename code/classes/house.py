@@ -30,7 +30,7 @@ class House():
 
             # Save each coordinate's distance as new distance
             for cable in range(len(battery_cables)):
-                new_distance = self.get_distance(x_coordinate, y_coordinate, 
+                new_distance = self.get_distance(self.x_coordinate, self.y_coordinate, 
                     int(battery_cables[cable][0]), int(battery_cables[cable][1]))
 
                 # Keep track of shortest distance
@@ -82,6 +82,10 @@ class House():
         # add new_coordinate to list
         # return new_coordinate
  
+    
+    def get_distance(self, x, y, destination_x, destination_y):
+        return 0
+
     def connect_battery(self, battery):
         self.battery = battery
         self.battery = 

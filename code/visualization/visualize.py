@@ -40,7 +40,7 @@ def make_scatter(batteries_data, houses_data, algorithm):
     ax.grid(which='minor', alpha=0.2)
     ax.grid(which='major', alpha=0.5)
 
-    # back to oiriginal code
+    # back to original code
     plt.scatter(batteries_x, batteries_y, c='red')
     plt.scatter(houses_x, houses_y, c='blue')
 
