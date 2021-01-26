@@ -91,8 +91,6 @@ class hillclimber(randomize_shared):
                 print('error in solution, retrying')
                 new_grid = self.fix_error()
             # Save best solution
-            print(self.calculate_cost(self.grid))
-            print(self.calculate_cost(new_grid))
             if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
                 no_improvement += 1
                 print("found better solution")
