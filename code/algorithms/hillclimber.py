@@ -6,9 +6,76 @@ class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 5
+        self.n = 50
         self.houses_to_change = 2
         self.retry = False
+
+    def new_destination(self, house, grid):
+        shortest_distance = float('inf')
+        no_battery_found = 0
+
+        # Loops through all batteries and finds all cables connected to each battery
+        for Battery in grid.all_batteries.values():
+            battery_cables = list(Battery.cables)
+            
+            # Find new solution when all batteries are full
+            if Battery.remaining_capacity - house.output < 0:
+                no_battery_found += 1
+                if no_battery_found >= 5:
+                    self.retry = True
+                    break
+                
+                continue
+            
+            no_battery_found = 0
+
+            # Finds distance for each viable destination
+            for cable in range(len(battery_cables)):
+                new_distance = self.get_distance(house.x_coordinate, house.y_coordinate, 
+                                int(battery_cables[cable][0]), int(battery_cables[cable][1]))
+                
+                # Updates shortest distance and saves destination coordinates and battery ID
+                if new_distance < shortest_distance:
+                    shortest_distance = new_distance
+                    house.destination = tuple([int(battery_cables[cable][0]), int(battery_cables[cable][1])])
+                    house.battery = Battery.id
+
+        # Update distance and remaining capacity when valid destination is found
+        if self.retry == False:
+            house.distance = self.get_distance(house.x_coordinate, house.y_coordinate, house.destination[0], house.destination[1])
+            grid.all_batteries.get(house.battery).remaining_capacity -= house.output
+
+    def new_cable(self,house, grid):
+        if [house.x_coordinate, house.y_coordinate] not in house.cables:
+            house.latest_cable = ([house.x_coordinate, house.y_coordinate])
+            house.cables.append([house.x_coordinate, house.y_coordinate])
+            grid.all_batteries.get(house.battery).cables.append(tuple(house.latest_cable))
+        current_distance = house.distance
+
+        while list(house.latest_cable) != list(house.destination):
+            new_cable = list(house.latest_cable)
+            saved_cable = new_cable.copy()
+            saved_distance = current_distance
+
+            if saved_distance == 0:
+                break
+
+            while saved_distance <= current_distance:
+                new_cable[0] = saved_cable[0]
+                new_cable[1] = saved_cable[1]
+                positive = random.choice([1, -1])
+                horizontal = random.choice([True, False])
+
+                if horizontal:
+                    new_cable[0] = new_cable[0] + positive
+                else:
+                    new_cable[1] = new_cable[1] + positive
+                current_distance = self.get_distance(new_cable[0], new_cable[1], house.destination[0], house.destination[1])
+            
+            current_distance = saved_distance - 1
+            house.latest_cable = new_cable
+            grid.all_batteries.get(house.battery).cables.append(tuple(new_cable))
+            house.cables.append(new_cable)
 
     def find_to_mutate(self, grid):
         """
@@ -53,7 +120,7 @@ class hillclimber(randomize_shared):
                         houses_to_change.add(House.id)
                         batteries_to_change.add(House.battery)
                         for i in House.cables:
-                            cables_to_remove.add(tuple(cable))
+                            cables_to_remove.add(tuple(i))
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
@@ -76,8 +143,21 @@ class hillclimber(randomize_shared):
         # Builds new cables for these houses
         for i in houses_to_change:
             grid.all_houses.get(i).distance = 0
-            self.get_destination(grid.all_houses.get(i), grid)
-            self.create_new_cable(grid.all_houses.get(i), grid)
+            self.new_destination(grid.all_houses.get(i), grid)
+            self.new_cable(grid.all_houses.get(i), grid)
+
+    def calculate_cost(self, grid):
+        cable_cost = 0
+
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
+
+        return cable_cost
+
+    def fix_error(self):
+        self.retry = False
+        return self.grid
 
     def run(self, grid):
         # Saves old grid
@@ -99,21 +179,11 @@ class hillclimber(randomize_shared):
                 no_improvement = 0
                 print("found better solution")
                 self.grid = new_grid
+                print(self.calculate_cost(self.grid))
             else:
                 no_improvement += 1
         
         # Returns best grid
         return self.grid
 
-    def calculate_cost(self, grid):
-        cable_cost = 0
-
-        for Battery in grid.all_batteries.values():
-            cable_cost += len(set(Battery.cables)) * Battery.cable_price
-            cable_cost += Battery.battery_price
-
-        return cable_cost
-
-    def fix_error(self):
-        self.retry = False
-        return self.grid
+    
