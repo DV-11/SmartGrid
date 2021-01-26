@@ -84,6 +84,7 @@ class hillclimber(randomize_shared):
         self.grid = copy.deepcopy(grid)
         print(self.calculate_cost(grid))
         no_improvement = 0
+
         # Makes small changes every loop
         while no_improvement < self.n:
             new_grid = copy.deepcopy(self.grid)

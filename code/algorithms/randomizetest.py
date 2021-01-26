@@ -77,34 +77,41 @@ class randomize_shared():
 
         return vertical_distance + horizontal_distance
 
-    def create_new_cable(self,house, grid): #stap 3
-        house.cables.append(house.latest_cable)
-        grid.all_cables.add(tuple(house.latest_cable))
-        current_distance = house.distance
+    def create_new_cable(self, house, grid): #stap 3
+        house.cables.append(house.latest_cable)     # add latest cable to list in house
+        grid.all_cables.add(tuple(house.latest_cable))  # add latest cable to list in grid
+        current_distance = house.distance           # set current distance
 
-        while list(house.latest_cable) != list(house.destination):
-            new_cable = list(house.latest_cable)
-            saved_cable = new_cable.copy()
-            saved_distance = current_distance
+        # Laying the cable
+        while list(house.latest_cable) != list(house.destination):  # 
+            new_cable = list(house.latest_cable)    # ??
+            saved_cable = new_cable.copy()          # copy??
+            saved_distance = current_distance       # copy current distance?
 
-            while saved_distance <= current_distance and saved_distance != 0:
+            # Repeat as long as distance is not 0
+            while saved_distance <= current_distance and saved_distance != 0:   # Repeat while distance is 0?
                 new_cable[0] = saved_cable[0]
                 new_cable[1] = saved_cable[1]
-                positive = random.choice([1, -1])
+                positive = random.choice([1, -1])       
                 horizontal = random.choice([True, False])
 
+                # Randomly move vertically or horizontally
                 if horizontal:
-                    new_cable[0] = new_cable[0] + positive
+                    new_cable[0] += positive
                 else:
-                    new_cable[1] = new_cable[1] + positive
+                    new_cable[1] += positive
                 
                 current_distance = self.get_distance(new_cable[0], new_cable[1], house.destination[0], house.destination[1])
             
+            # Update current distance, latest cable, and cables
             current_distance = saved_distance - 1
             house.latest_cable = new_cable
             house.cables.append(new_cable)
+
             if tuple(new_cable) in grid.all_batteries.get(house.battery).cables:
                 continue
+
+            # Adding 1 cable to the list
             grid.all_batteries.get(house.battery).cables.append(tuple(new_cable))
             
             
