@@ -76,6 +76,7 @@ class House():
             # current_coordinate = random_move(current_coordinate)  # moves and adds to list and returns new coordinate
 
     def random_move():
+        pass
         # moves 1 step and adds to list and returns new coordinate
 
         # move 1 step randomly
@@ -83,14 +84,12 @@ class House():
         # return new_coordinate
  
     
-    def get_distance(self, x, y, destination_x, destination_y):
-        return 0
+    # def get_distance(self, x, y, destination_x, destination_y):
+    #     return 0
 
     def connect_battery(self, battery):
-        self.battery = battery
-        self.battery = 
+    #     self.battery = battery
+    #     self.battery = 
         # Anything else?
         # lay_random_cable(origin, destination)
-        
-
-    
+        pass
