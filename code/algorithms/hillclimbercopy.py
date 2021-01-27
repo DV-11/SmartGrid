@@ -6,7 +6,7 @@ class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 50
+        self.n = 5
         self.houses_to_change = 2
         self.retry = False
 
@@ -32,41 +32,65 @@ class hillclimber(randomize_shared):
         # Uses result form to_mutate to find which cables to remove
         # Implements a loop to see which other houses need their cables to be removed as a result of
         # a cable from a different house missing.
-        cables_to_remove = set()
-        houses_to_change = set()
+        cables_to_remove = set()        # items can be added, but not changed
+        houses_to_change = set()        
         batteries_to_change = set()
 
         # Puts cables from houses from initial list in the cables_to_remove set
-        for House in houses:
-            for cable in House.cables:
-                cables_to_remove.add(tuple(cable))
-            houses_to_change.add(House.id)
+        for House in houses:    # house object
+            for cable in House.cables:  # cable: [10,47]
+                cables_to_remove.add(tuple(cable)) 
+                print("tuple(cable):", tuple(cable)) # (43, 32)
+            houses_to_change.add(House.id)      # remove id??
             batteries_to_change.add(House.battery)
+
+        print("1cables_to_remove:", cables_to_remove) # {(49, 23), (10, 34), ...}
+        print("1batteries_to_change:", batteries_to_change) # {1, 2, 4, 5}
+        print("1houses_to_change:", houses_to_change) # {73, 82, 86, 95}
 
         # Checks which houses also need their cables removed. Loops until no knew houses to change are found
         new_house_found = True
-        while new_house_found:
-            current_set_size = len(houses_to_change)
+        while new_house_found:  # loops twice
+            current_set_size = len(houses_to_change) # current_set_size: 4 , 35
+            print("current_set_size:", current_set_size)
+
             for House in grid.all_houses.values():
                 for cable in House.cables:
                     if tuple(cable) in cables_to_remove:
                         houses_to_change.add(House.id)
                         batteries_to_change.add(House.battery)
-                        for i in House.cables:
-                            cables_to_remove.add(tuple(i))
+                        for i in House.cables:  
+                            print("i:", i)                              # [43, 13]
+                            print("tuple(cable):", tuple(cable))        # repeats the same many times!
+                            cables_to_remove.add(tuple(cable))          # DOES NOTHING??
             if current_set_size == len(houses_to_change):
                 new_house_found = False
+            
+        print("2cables_to_remove:", cables_to_remove) # same 
+        print("2batteries_to_change:", batteries_to_change) # same, but could increase
+        print("2houses_to_change:", houses_to_change) # much more
 
         # Removes the cables of all houses which need their cables removed
         houses_to_change = list(houses_to_change)
-        for i in houses_to_change:
-            key = grid.all_houses.get(i).battery
-            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output
+        for i in houses_to_change:  # 129 wouldnt it be better if house objects were saved in this list instead of house id
+            print("i:", i)
+            print("grid.all_houses.get(i).battery:", grid.all_houses.get(i).battery)
+            key = grid.all_houses.get(i).battery   # 2 (which battery)
+            print("key:", key)
+            # Update remaining capacity
+            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output # this is used_capacity not remaining
+            print("grid.all_batteries.get(key).remaining_capacity:", grid.all_batteries.get(key).remaining_capacity)
             # Finds house and removes cables from battery
-            for cable in grid.all_houses.get(i).cables:
+
+            print("1grid.all_houses.get(i).cables:", grid.all_houses.get(i).cables)
+
+            for cable in grid.all_houses.get(i).cables: # [38, 18] in list of lists
+                print("cable:", cable)
                 grid.all_batteries.get(key).cables.remove(tuple(cable))
 
             grid.all_houses.get(i).cables.clear()
+            print("2grid.all_houses.get(i):", grid.all_houses.get(i)) # house object
+            print("2grid.all_houses.get(i).cables:", grid.all_houses.get(i).cables)
 
         # Ensures battery coordinates are still in battery.cables for creation of new cables
         for Battery in grid.all_batteries.values():
@@ -78,20 +102,6 @@ class hillclimber(randomize_shared):
             grid.all_houses.get(i).distance = 0
             self.get_destination(grid.all_houses.get(i), grid)
             self.create_new_cable(grid.all_houses.get(i), grid)
-
-    def calculate_cost(self, grid):
-        cable_cost = 0
-
-        for Battery in grid.all_batteries.values():
-            cable_cost += len(set(Battery.cables)) * Battery.cable_price
-            cable_cost += Battery.battery_price
-
-        return cable_cost
-
-    def fix_error(self):
-        self.retry = False
-        return self.grid
-    
 
     def run(self, grid):
         # Saves old grid
@@ -106,16 +116,28 @@ class hillclimber(randomize_shared):
             self.mutate_house_cable(houses, new_grid)
             # Check if solution is valid
             if self.retry:
+                print('error in solution, retrying')
                 new_grid = self.fix_error()
-                continue
             # Save best solution
             if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
                 no_improvement = 0
                 print("found better solution")
                 self.grid = new_grid
-                print(self.calculate_cost(self.grid))
             else:
                 no_improvement += 1
         
         # Returns best grid
+        return self.grid
+
+    def calculate_cost(self, grid):
+        cable_cost = 0
+
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
+
+        return cable_cost
+
+    def fix_error(self):
+        self.retry = False
         return self.grid

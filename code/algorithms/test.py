@@ -2,7 +2,7 @@ import random
 import copy
 from .random_greedy import randomize_shared
 
-class hillclimber(randomize_shared):
+class test(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
@@ -53,7 +53,7 @@ class hillclimber(randomize_shared):
                         houses_to_change.add(House.id)
                         batteries_to_change.add(House.battery)
                         for i in House.cables:
-                            cables_to_remove.add(tuple(i))
+                            cables_to_remove.add(tuple(cable))
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
@@ -79,20 +79,6 @@ class hillclimber(randomize_shared):
             self.get_destination(grid.all_houses.get(i), grid)
             self.create_new_cable(grid.all_houses.get(i), grid)
 
-    def calculate_cost(self, grid):
-        cable_cost = 0
-
-        for Battery in grid.all_batteries.values():
-            cable_cost += len(set(Battery.cables)) * Battery.cable_price
-            cable_cost += Battery.battery_price
-
-        return cable_cost
-
-    def fix_error(self):
-        self.retry = False
-        return self.grid
-    
-
     def run(self, grid):
         # Saves old grid
         self.grid = copy.deepcopy(grid)
@@ -106,16 +92,28 @@ class hillclimber(randomize_shared):
             self.mutate_house_cable(houses, new_grid)
             # Check if solution is valid
             if self.retry:
+                print('error in solution, retrying')
                 new_grid = self.fix_error()
-                continue
             # Save best solution
             if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
                 no_improvement = 0
                 print("found better solution")
                 self.grid = new_grid
-                print(self.calculate_cost(self.grid))
             else:
                 no_improvement += 1
         
         # Returns best grid
+        return self.grid
+
+    def calculate_cost(self, grid):
+        cable_cost = 0
+
+        for Battery in grid.all_batteries.values():
+            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+            cable_cost += Battery.battery_price
+
+        return cable_cost
+
+    def fix_error(self):
+        self.retry = False
         return self.grid

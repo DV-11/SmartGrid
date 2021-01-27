@@ -20,6 +20,10 @@ class House():
     def find_nearest_battery(self):
         pass
 
+    def get_distance(self):
+        # remove later
+        pass
+
     def find_nearest_destination(self, grid): 
         destination = None
         shortest_distance = float('inf')
@@ -84,13 +88,29 @@ class House():
         # return new_coordinate
  
     
-    def get_distance(self, x, y, destination_x, destination_y):
-        return 0
+    # def get_distance(self, x, y, destination_x, destination_y):
+    #     return 0
 
     def connect_battery(self, battery):
-        self.battery = battery
+    #     self.battery = battery
+    #     self.battery = 
         # Anything else?
         # lay_random_cable(origin, destination)
-        
+        pass
 
-    
+    def disconnect_battery(self):
+        # self.battery = None
+        # self.cables.clear()
+        pass
+
+    def get_possibilities(self, all_batteries): # untested
+        """
+        Returns a list of all available batteries that can be assigned to this house.
+        """
+        available = []
+
+        for battery in all_batteries:
+            if battery.remaining_capacity >= battery.capacity:
+                available.append(battery)
+
+        return available

@@ -1,43 +1,46 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>368</x><y>240</y><w>350</w><h>190</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>408</x><y>230</y><w>280</w><h>210</h></coordinates><panel_attributes>House
 --
 id: Int
-max_output: Int
-x_position: Int
-y_position: Int
-cables: [coordinates] 
+x_coordinate: Int
+y_coordinate: Int
+output: Int
+cables: ["x_coordinate, y_coordinate"] 
 battery: Battery
-cable_cost: Int
+distance: Int
+destination: 
+latest_cable: ["x_coordinate, y_coordinate"]
 
 --
-calculate_cable_cost(self, cables): cable_cost
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>0</y><w>280</w><h>190</h></coordinates><panel_attributes>Battery
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>0</y><w>280</w><h>180</h></coordinates><panel_attributes>Battery
 --
 id: Int
+x_coordinate: Int
+y_coordinate: Int
 capacity: Int
-reserved_capacity: Int
-position: String
+remaining_capacity: Float
+cables: [Tuple([x_coordinate, y_coordinate])]
+houses: [House]
 
 --
-add_house(self, house): None?? remove?
 
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>68</x><y>0</y><w>260</w><h>190</h></coordinates><panel_attributes>Grid??
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>38</x><y>90</y><w>260</w><h>170</h></coordinates><panel_attributes>Grid
 --
 size: Int
-all_batteries: [Battery] # or dict
-all_houses: [House]
-all_costs: Int
+all_batteries: {ID:Battery}
+all_houses: {ID:House}
+all_cables: set
+
 --
-generate_grid(self, size): ...?
 load_batteries(self, batteries_file.csv): Battery
 load_houses(self, houses_file.csv): House
-get_violation(self): [Battery] ??
-get_unconnected_house(self): House/None??
-calc_all_costs(self, all_houses): all_costs</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>40</y><w>110</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>518</x><y>180</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>49</y><w>70</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;50;200</additional_attributes></element></diagram>
+is_solution(self): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>0</y><w>140</w><h>160</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;140;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>518</x><y>170</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>139</y><w>140</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;120;100</additional_attributes></element></diagram>
