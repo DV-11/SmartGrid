@@ -50,10 +50,13 @@ if __name__ == "__main__":
     if isinstance(chosen_algorithm, restricted_greedy):
         grid = restricted_greedy(grid).run(grid, district_number)
     elif isinstance(chosen_algorithm, hillclimber):
+        to_change = int(input("How many houses would you like to change per iteration (recommend 2-5)\n"))
+        iterations = int(input("How many times should the program run without improving before quitting?\n"))
         grid = randomize_shared(grid).run(grid)
-        grid = chosen_algorithm.run(grid, 15)
+        grid = chosen_algorithm.run(grid, to_change, iterations)
     elif isinstance(chosen_algorithm, simulated_annealing):
-        grid = chosen_algorithm.run(grid, 1500)
+        iterations = int(input("How many times should the program run without improving before quitting?\n"))
+        grid = chosen_algorithm.run(grid, iterations)
     elif isinstance(chosen_algorithm, u_hillclimber):
         grid = u_random(grid).run(grid)
         grid = chosen_algorithm.run(grid)

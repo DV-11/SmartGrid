@@ -7,7 +7,7 @@ class u_hillclimber(u_random):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 500
+        self.n = 50
         self.houses_to_change = 5
         self.retry = False
 

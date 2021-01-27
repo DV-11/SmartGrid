@@ -6,14 +6,14 @@ class u_random():
         self.retry = False
         self.first = True
 
-    # randomly assign a battery to each house to be connected without regard for outputs and capacities 
+    # Randomly assign a battery to each house to be connected without regard for outputs and capacities 
     def random_assignment(self, grid, houses):
 
-        # take all batteries
+        # Take all batteries
         all_batteries = list(grid.all_batteries.values())
         random.shuffle(all_batteries)
         
-        # randomly assign a battery to each house
+        # Randomly assign a battery to each house
         for House in houses:
             no_battery_found = 0
 

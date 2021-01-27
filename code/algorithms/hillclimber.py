@@ -107,10 +107,11 @@ class hillclimber(randomize_shared):
         else:
             self.no_improvement += 1
 
-    def run(self, grid, iterations):
+    def run(self, grid, to_change, iterations):
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
+        self.houses_to_change = to_change
         self.iterations = iterations
 
         # Saves old grid
