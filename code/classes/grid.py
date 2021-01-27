@@ -69,7 +69,7 @@ class Grid():
         """
         cable_cost = 0
 
-        for Battery in grid.all_batteries.values():
+        for Battery in self.all_batteries.values():
             cable_cost += len(set(Battery.cables)) * Battery.cable_price
             cable_cost += Battery.battery_price
 
