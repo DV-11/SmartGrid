@@ -3,7 +3,7 @@ import copy
 from .hillclimber import hillclimber
 from .randomize import randomize
 
-class u_hillclimber(randomize):
+class unshared_hillclimber(randomize):
 
     def __init__(self):
         self.grid = None

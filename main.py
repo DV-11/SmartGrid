@@ -3,7 +3,7 @@ from code.algorithms.randomize import randomize
 from code.visualization.visualize import make_scatter
 from code.algorithms.greedy import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
-from code.algorithms.uhillclimber import u_hillclimber
+from code.algorithms.unshared_hillclimber import unshared_hillclimber
 from code.algorithms.random_greedy import randomize_shared
 from code.algorithms.sim_anneal import simulated_annealing
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     print(f"Loading grid with data from district-{district_number}.")
 
     # Allows user to choose an algorithm
-    unique_cables_algorithms = {"randomize": randomize(), "greedy": restricted_greedy(grid), "hillclimber": u_hillclimber()}
+    unique_cables_algorithms = {"randomize": randomize(), "greedy": restricted_greedy(grid), "hillclimber": unshared_hillclimber()}
     shared_cables_algorithms = {"randomize" : randomize_shared(), "hillclimber": hillclimber(grid), "simulated annealing": simulated_annealing(grid, temperature=10000)}
     chosen_algorithm = None
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         grid = randomize_shared().run(grid)
         grid = chosen_algorithm.run(grid, to_change, iterations)
     
-    elif isinstance(chosen_algorithm, u_hillclimber):
+    elif isinstance(chosen_algorithm, unshared_hillclimber):
         to_change = int(input("How many houses would you like to change per iteration (recommend 2-5)\n"))
         iterations = int(input("How many times should the program run without improving before quitting?\n"))
         grid = randomize().run(grid)

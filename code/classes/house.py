@@ -6,29 +6,18 @@ class House():
         self.x_coordinate = int(x)
         self.y_coordinate = int(y)
         self.output = float(output)
-        self.cables = []                # list of coordinates
-        self.battery = None             # ID
-        self.distance = 0               # distance to dest?
-        self.destination = None         # coordinate
+        self.cables = []                
+        self.battery = None             
+        self.distance = 0              
+        self.destination = None      
         self.to_battery = False
         self.latest_cable = [self.x_coordinate, self.y_coordinate]
 
-    def has_cable(self):    # CHECK IF THIS WORKS
-        # ??? Does this work with a list??
+    def has_cable(self):   
         return self.cables is not None
 
-    def find_nearest_battery(self):
-        pass
-
-    def get_distance(self):
-        # remove later
-        pass
-
-    def find_nearest_destination(self, grid): 
-        pass
-
     def lay_simple_cable(self, house, battery):
-        origin = [int(house.x_coordinate),int(house.y_coordinate)] # x = 0, y = 1
+        origin = [int(house.x_coordinate),int(house.y_coordinate)] 
         destination = [int(battery.x_coordinate),int(battery.y_coordinate)]
 
         current_coordinate = origin
@@ -53,39 +42,7 @@ class House():
                 house.cables.append(tuple(current_coordinate))
                 current_coordinate[0] += 1
 
-    def lay_random_cable(self, origin, destination):
-        pass
-        # starting coordinate & destination coordinate -> cables["x,y"]
-        # current_coordinate = starting coordinate
-
-        # while origin != destination
-            # current_coordinate = random_move(current_coordinate)  # moves and adds to list and returns new coordinate
-
-    def random_move(self):
-        pass
-        # moves 1 step and adds to list and returns new coordinate
-
-        # move 1 step randomly
-        # add new_coordinate to list
-        # return new_coordinate
- 
-    
-    # def get_distance(self, x, y, destination_x, destination_y):
-    #     return 0
-
-    def connect_battery(self, battery):
-    #     self.battery = battery
-    #     self.battery = 
-        # Anything else?
-        # lay_random_cable(origin, destination)
-        pass
-
-    def disconnect_battery(self):
-        # self.battery = None
-        # self.cables.clear()
-        pass
-
-    def get_possibilities(self, all_batteries): # untested
+    def get_possibilities(self, all_batteries): 
         """
         Returns a list of all available batteries that can be assigned to this house.
         """
