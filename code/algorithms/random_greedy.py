@@ -102,21 +102,21 @@ class randomize_shared():
     
     def fix_error(self):
         
-                print('Solution invalid, retrying.')
-                self.grid.all_cables.clear()
+        print('Solution invalid, retrying.')
+        self.grid.all_cables.clear()
 
-                for Battery in self.grid.all_batteries.values():
-                    Battery.cables = [tuple([Battery.x_coordinate, Battery.y_coordinate])]
-                    Battery.remaining_capacity = Battery.capacity
-                    Battery.houses.clear()
+        for Battery in self.grid.all_batteries.values():
+            Battery.cables = [tuple([Battery.x_coordinate, Battery.y_coordinate])]
+            Battery.remaining_capacity = Battery.capacity
+            Battery.houses.clear()
 
-                for House in self.grid.all_houses.values():
-                    House.cables.clear()
-                    House.destination = None
-                    House.distance = 0
-                    House.latest_cable = [House.x_coordinate, House.y_coordinate]
-            
-                self.retry = False
+        for House in self.grid.all_houses.values():
+            House.cables.clear()
+            House.destination = None
+            House.distance = 0
+            House.latest_cable = [House.x_coordinate, House.y_coordinate]
+    
+        self.retry = False
                 
     def run(self, grid):
         """

@@ -1,6 +1,53 @@
-from code.algorithms.greedy import find_distance
-from .randomize import create_cable
 from operator import itemgetter
+
+# find the distance between a house and a battery 
+def find_distance(house, battery):
+    
+    #derermine horizontal and vertical distance 
+    horizontal_distance = int(house.x_coordinate) - int(battery.x_coordinate)
+    vertical_distance = int(house.y_coordinate) - int(battery.y_coordinate)
+    
+    # get only the absolute distance regardless of direction 
+    if horizontal_distance < 0:
+        horizontal_distance *= -1
+    
+    if vertical_distance < 0:
+        vertical_distance *= -1 
+
+    # return total distance 
+    return horizontal_distance + vertical_distance
+
+# get the coordenates of a cable between a house and a battery 
+def create_cable(house, battery):
+    # set coordinates to ints 
+    battery_c = [int(battery.x_coordinate),int(battery.y_coordinate)]
+    house_c = [int(house.x_coordinate),int(house.y_coordinate)]
+
+    # first points where the cable goes through 
+    latest = house_c
+
+    # determine which points in the grid the cable goes through 
+    if house_c[1] >= battery_c[1]:
+        while latest[1] > battery_c[1]:
+            house.cables.append(tuple(latest))
+            latest[1] = latest[1]-1
+    else:
+        while latest[1] < battery_c[1]:
+            house.cables.append(tuple(latest))
+            latest[1] = latest[1]+1
+        
+    if house_c[0] >= battery_c[0]:
+        while latest[0] > battery_c[0]:
+            house.cables.append(tuple(latest))
+            latest[0] = latest[0] - 1
+    else:
+        while latest[0] < battery_c[0]:
+            house.cables.append(tuple(latest))
+            latest[0] = latest[0] + 1
+        
+    # final destination of the cable
+    house.cables.append(tuple(battery_c))
+
 
 # greedy algorithm that takes output and capacity into account
 class restricted_greedy():

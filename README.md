@@ -7,11 +7,15 @@ There are 150 houses and 5 batteries located on a grid in each of the 3 district
 
 ## Algorithms 
 
+### Random Unique
+
+For the first part of the case. This algorithm randomly connects houses to batteries with unique cables. Can be seen as a baseline for the other algorithms. 
+
 ### Restricted Greedy
 
 This algorithm is called greedy because it makes the most convenient decision in each step without considering the whole picture. This means that in a randomly determined but always constant order, the algorithm goes through all the houses in a district and in each instance, it connects the given house to the closest available battery. The algorithm is restricted because it keeps track of the current output each battery is receiving and won't connect a house to a battery if adding its output would be too much for the battery. This algorithm is meant for the first part of the case, so it creates unique cables for each house. 
 
-### Shared Randomize
+### Shared Random Greedy (A.K.A. Randomize Shared)
 
 It's called shared because it allows houses to share the cables. In addition to houses being connected to batteries, a cable can be set from a house to another cable, connecting that house to the target battery of the already-existing cable. For each given house, the algorithm chooses randomly from the surrounding cable points or batteries to connect to. 
 
@@ -19,6 +23,9 @@ It's called shared because it allows houses to share the cables. In addition to 
 
 This one is for the second prat of the case. The hillclimber algorithm starts with a random assignment. All houses get connected to a random battery as a starting point. From there, random adjustments are made (i.e. a random house would be randomly re-connected to another cable or battery) and if the total cost after this adjustment is lower than before, this change is accepted as the new state of the grid. This process is repeated many times, further reducing the total cost with each repetition. 
 
+### Simulated Annealing
+
+A vaiation of the hillclimber algorithm. It not only accepts changes that improve the results, but there is also a chance that it will accept changes that lead to a worse resut. This might seem bad, but it's actually very useful to find the global optimum (i.e. the best solution overal) and not just the local optimum (i.e. the best solution within a certain range). If you have troubles understanding this, [check this neat visualization](https://en.wikipedia.org/wiki/File:Hill_Climbing_with_Simulated_Annealing.gif) 
 ## Getting started
 
 ### Requirements
@@ -50,7 +57,7 @@ Choose a district (1, 2, 3)
 Simply input the number of one of the districts to continue.
 Then you must select which algorithm you want to run: 
 ```
-Choose an algorithm dict_keys(['restricted_greedy', 'hillclimber', 'shared_randomize']) 
+Choose an algorithm dict_keys(['random_unique', 'restricted_greedy', 'shared_randomize', 'hillclimber', 'simulated_annealing']) 
 ```
 
 Input the name of the desired algorithm as written on the prompt. 
