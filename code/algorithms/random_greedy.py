@@ -2,7 +2,7 @@ import random
 import copy
 
 class randomize_shared():
-    def __init__(self, grid):
+    def __init__(self):
         self.grid = None
         self.retry = False
         self.n = 100

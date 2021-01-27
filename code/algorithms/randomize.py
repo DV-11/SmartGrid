@@ -1,7 +1,7 @@
 import random, copy, operator
 
 class randomize():
-    def __init__(self, grid):
+    def __init__(self):
         self.grid = None
         self.retry = False
         self.first = True

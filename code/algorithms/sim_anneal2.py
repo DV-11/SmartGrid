@@ -12,7 +12,7 @@ class SimulatedAnnealing(hillclimber):
     """
     def __init__(self, grid, temperature=1):
         # Use the init of the Hillclimber class
-        super().__init__(grid)
+        super().__init__()
 
         # Starting temperature and current temperature
         self.T0 = temperature

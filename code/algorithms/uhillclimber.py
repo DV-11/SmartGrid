@@ -5,7 +5,7 @@ from .randomize import randomize
 
 class u_hillclimber(randomize):
 
-    def __init__(self, grid):
+    def __init__(self):
         self.grid = None
         self.n = 50
         self.houses_to_change = 5
