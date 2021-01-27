@@ -70,16 +70,23 @@ class randomize():
     def calculate_cost(self, grid):
         # Calcultes cost
         cost = 5000 * len(grid.all_batteries.values())
+
         for House in grid.all_houses.values():
             cost += 9 * len(House.cables)
+
         return cost
 
     def run(self, grid):
         # Assigns a battery to each house
         if self.first:
             self.grid = copy.deepcopy(grid)
+<<<<<<< HEAD:code/algorithms/randomize.py
         houses = list(grid.all_houses.values())
     
+=======
+
+        houses = grid.all_houses.values()
+>>>>>>> bea5dcf7e6bb082dfadae5bab9a44a3fb628ceb4:code/algorithms/u_random.py
         self.random_assignment(grid, houses)
     
         # Retries if configuration was invalid

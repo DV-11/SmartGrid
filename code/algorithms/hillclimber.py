@@ -12,7 +12,7 @@ class hillclimber(randomize_shared):
 
     def find_to_mutate(self, grid):
         """
-        Returns houses with longest distance to their destination along with a few random ones
+        Returns houses with longest distance to their destination along with a few random ones.
         """
         # Sorts all houses based on distance
         houses_list = list(grid.all_houses.values())
@@ -20,28 +20,27 @@ class hillclimber(randomize_shared):
         to_change = []
 
         # Picks houses with longest disance and a few random houses to change
-        for i in range (self.houses_to_change):
-            to_change.append(houses_list[i])
+        for house in range(self.houses_to_change):
+            to_change.append(houses_list[house])
             random_number = random.randint(self.houses_to_change, len(houses_list) - 1)
             to_change.append(houses_list[random_number])
         
         return to_change
 
     def mutate_house_cable(self, houses, grid):
-        # Creates new cables in three parts
-        # Uses result form to_mutate to find which cables to remove
-        # Implements a loop to see which other houses need their cables to be removed as a result of
-        # a cable from a different house missing.
+        """
+        Reconfigures a list of houses and fixes cables that it breaks along the way.
+        """
         cables_to_remove = set()
         houses_to_change = set()
 
-        # Puts cables from houses from initial list in the cables_to_remove set 1
+        # Puts cables from houses from initial list in the cables_to_remove set 
         for House in houses:
             for cable in House.cables:
                 cables_to_remove.add(tuple(cable))
             houses_to_change.add(House.id)
 
-        # Finds houses with half broken cables 2
+        # Finds houses with half broken cables 
         new_house_found = True
         while new_house_found:
             current_set_size = len(houses_to_change)
@@ -59,28 +58,28 @@ class hillclimber(randomize_shared):
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
-        # Removes the cables of all houses which need their cables removed 3
+        # Removes the cables of all houses which need their cables removed 
         houses_to_change = list(houses_to_change)
-        for i in houses_to_change:
-            key = grid.all_houses.get(i).battery
-            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output    
+        for house in houses_to_change:
+            key = grid.all_houses.get(house).battery
+            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(house).output    
             # Finds house and removes cables from battery
-            for cable in grid.all_houses.get(i).cables:
+            for cable in grid.all_houses.get(house).cables:
                 grid.all_batteries.get(key).cables.remove(tuple(cable))
 
-            grid.all_houses.get(i).cables.clear()
+            grid.all_houses.get(house).cables.clear()
 
-        # Ensures battery coordinates are still in battery.cables for creation of new cables 4
+        # Ensures battery coordinates are still in battery.cables for creation of new cables 
         for Battery in grid.all_batteries.values():
             if tuple([Battery.x_coordinate,Battery.y_coordinate]) not in Battery.cables:
                 Battery.cables.append(tuple([Battery.x_coordinate,Battery.y_coordinate]))
 
         # Builds new cables for these houses
         random.shuffle(houses_to_change)
-        for i in houses_to_change:
-            grid.all_houses.get(i).distance = 0
-            self.get_destination(grid.all_houses.get(i), grid)
-            self.create_new_cable(grid.all_houses.get(i), grid)
+        for house in houses_to_change:
+            grid.all_houses.get(house).distance = 0
+            self.get_destination(grid.all_houses.get(house), grid)
+            self.create_new_cable(grid.all_houses.get(house), grid)
 
     def calculate_cost(self, grid):
         cable_cost = 0
