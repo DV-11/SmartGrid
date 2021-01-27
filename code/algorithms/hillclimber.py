@@ -6,7 +6,7 @@ class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 5
+        # self.n = 5
         self.houses_to_change = 2
         self.retry = False
         self.no_improvement = 0
@@ -35,29 +35,22 @@ class hillclimber(randomize_shared):
         # a cable from a different house missing.
         cables_to_remove = set()
         houses_to_change = set()
-        batteries_to_change = set()
 
         # Puts cables from houses from initial list in the cables_to_remove set 1
         for House in houses:
             for cable in House.cables:
                 cables_to_remove.add(tuple(cable))
             houses_to_change.add(House.id)
-            batteries_to_change.add(House.battery)
 
-        # Checks which houses also need their cables removed. Loops until no new houses to change are found
-
-        # Checks for houses with broken cable 2
+        # Finds houses with half broken cables 2
         new_house_found = True
         while new_house_found:
             current_set_size = len(houses_to_change)
             for House in grid.all_houses.values():
                 for cable in House.cables:
-                    # print("House.cables: ", House.cables)
                     if tuple(cable) in cables_to_remove:
                         houses_to_change.add(House.id)
-                        batteries_to_change.add(House.battery)
                         for i in House.cables:              # and this be removed altogether
-                            # print("2        House.cables: ", House.cables)
                             cables_to_remove.add(tuple(i))  # shouldn't this be tuple(cable) but with 2 tabs back?
             if current_set_size == len(houses_to_change):
                 new_house_found = False
@@ -78,7 +71,8 @@ class hillclimber(randomize_shared):
             if tuple([Battery.x_coordinate,Battery.y_coordinate]) not in Battery.cables:
                 Battery.cables.append(tuple([Battery.x_coordinate,Battery.y_coordinate]))
 
-        # Builds new cables for these houses 5
+        # Builds new cables for these houses
+        random.shuffle(houses_to_change)
         for i in houses_to_change:
             grid.all_houses.get(i).distance = 0
             self.get_destination(grid.all_houses.get(i), grid)
@@ -107,23 +101,26 @@ class hillclimber(randomize_shared):
         # Save best solution
         if old_cost > new_cost:
             self.no_improvement = 0
-            print("Better solution found!")
             self.grid = new_grid
             self.cost = new_cost
-            print("New cost:", self.cost)
+            print(f"Found a better solution: {self.cost}!")
         else:
             self.no_improvement += 1
 
-    def run(self, grid):
+    def run(self, grid, iterations):
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
+        self.iterations = iterations
+
         # Saves old grid
         self.grid = copy.deepcopy(grid)
-
+        print("Started hillclimbing...")
+        print(f"Initial cost: {self.calculate_cost(grid)}")
+        
         # Makes small changes every loop
-        while self.no_improvement < self.n:
-            print(f"Iteration {self.no_improvement}/{self.n}, current cost: {self.grid.calculate_cost()}")
+        while self.no_improvement < self.iterations:
+            print(f"Iteration {self.no_improvement}/{self.iterations}, current cost: {self.grid.calculate_cost()}")
             new_grid = copy.deepcopy(self.grid)
             
             # Mutates a few houses

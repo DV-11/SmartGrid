@@ -1,9 +1,9 @@
 from code.algorithms.greedy import find_distance
-from code.algorithms.randomize import create_cable
+from .randomize import create_cable
 from operator import itemgetter
 
 # greedy algorithm that takes output and capacity into account
-class restricted_greedy:
+class restricted_greedy():
     def __init__(self, grid):
         pass
 
