@@ -41,7 +41,7 @@ class Grid():
         """
         Load all houses from source file and adds them as an object in a dictionary.
         """
-        houses = {} # {id: House object}
+        houses = {} 
 
         with open (source_file) as in_file:
             reader = csv.DictReader(in_file)
@@ -54,7 +54,7 @@ class Grid():
             
         return houses
 
-    def is_solution(self): # CHECK IF THIS WORKS
+    def is_solution(self): 
         """
         Checks for battery capacity constraint. *Note: does not check for cables
         """
@@ -64,7 +64,7 @@ class Grid():
 
         return True
 
-    def calculate_cost(self): # CHECK IF THIS WORKS
+    def calculate_cost(self): 
         """
         Returns the sum of the cost of all cables on the grid.
         """
@@ -76,7 +76,7 @@ class Grid():
 
         return cable_cost
 
-    def get_violations(self): # CHECK IF THIS WORKS
+    def get_violations(self): 
         """
         Returns the ids of all batteries that have exceeded the battery capacity.
         """
@@ -88,7 +88,7 @@ class Grid():
         
         return violations
 
-    def get_unattached_house(self): # CHECK IF THIS WORKS
+    def get_unattached_house(self): 
         """
         Returns the first unattached house.
         """
