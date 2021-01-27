@@ -4,6 +4,7 @@ from code.visualization.visualize import make_scatter
 from code.algorithms.greedy import greedy_assignment, find_distance
 from code.algorithms.restricted import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
+from code.algorithms.uhillclimber import u_hillclimber
 from code.algorithms.random_greedy import randomize_shared
 from code.algorithms.hillclimberdebug import hillclimberdebug
 from code.algorithms.test import test
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         total_output += House.output
 
     # Allows user to choose an algorithm
-    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "hillclimberdebug": hillclimberdebug(grid), "test": test(grid), "random_unique": u_random(grid)}
+    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "hillclimberdebug": hillclimberdebug(grid), "test": test(grid), "random_unique": u_random(grid), "unique_hillclimber": u_hillclimber(grid)}
     chosen_algorithm = None
     while chosen_algorithm not in all_algorithms:
         chosen_algorithm = input(f"Choose an algorithm {all_algorithms.keys()} \n")
@@ -47,6 +48,8 @@ if __name__ == "__main__":
 
     if isinstance(chosen_algorithm, hillclimber):
         grid = randomize_shared(grid).run(grid)
+    elif isinstance(chosen_algorithm, u_hillclimber):
+        grid = u_random(grid).run(grid)
 
     if isinstance(chosen_algorithm, restricted_greedy):
         grid = restricted_greedy(grid).run(grid,district_number)

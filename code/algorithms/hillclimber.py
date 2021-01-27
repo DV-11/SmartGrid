@@ -6,7 +6,7 @@ class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 100
+        self.n = 10
         self.houses_to_change = 2
         self.retry = False
 
@@ -51,6 +51,7 @@ class hillclimber(randomize_shared):
                         houses_to_change.add(House.id)
                         for i in House.cables:
                             cables_to_remove.add(tuple(i))
+                        break
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
@@ -108,7 +109,7 @@ class hillclimber(randomize_shared):
                 new_grid = self.fix_error()
                 continue
             # Save best solution
-            if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
+            if self.calculate_cost(self.grid) > self.calculate_cost(new_grid):
                 no_improvement = 0
                 self.grid = new_grid
                 print(f"Found better solution: {self.calculate_cost(self.grid)}")

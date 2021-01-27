@@ -3,48 +3,54 @@ import copy
 from .hillclimber import hillclimber
 from .u_random import u_random
 
-class u_hillclimber(hillclimber):
+class u_hillclimber(u_random):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 1500
-        self.houses_to_change = 2
+        self.n = 500
+        self.houses_to_change = 5
         self.retry = False
+
+    def find_to_mutate(self, grid):
+        """
+        Returns houses with longest distance to their destination along with a few random ones
+        """
+        # Sorts all houses based on distance
+        houses_list = list(grid.all_houses.values())
+        houses_list = sorted(houses_list, key=lambda House:House.distance, reverse=True)
+        to_change = []
+
+        # Picks houses with longest disance and a few random houses to change
+        for i in range (self.houses_to_change):
+            to_change.append(houses_list[i])
+            random_number = random.randint(self.houses_to_change, len(houses_list) - 1)
+            to_change.append(houses_list[random_number])
+        
+        return to_change
 
     def mutate_house_cable(self, houses, grid):
 
         # Removes the cables of all houses which need their cables removed
-        for i in houses:
-            key = grid.all_houses.get(i).battery
-            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output
-            # Finds house and removes cables from battery
-            for cable in grid.all_houses.get(i).cables:
-                grid.all_batteries.get(key).cables.remove(tuple(cable))
-
-            grid.all_houses.get(i).cables.clear()
-
-        # Builds new cables for these houses
-        for i in houses:
-            grid.all_houses.get(i).distance = 0
-            self.get_destination(grid.all_houses.get(i), grid)
-            self.create_new_cable(grid.all_houses.get(i), grid)
-
-    def calculate_cost(self, grid):
-        cable_cost = 0
-
-        for Battery in grid.all_batteries.values():
-            cable_cost += len(set(Battery.cables)) * Battery.cable_price
+        for House in houses:
+            House.cables.clear()
+            grid.all_batteries.get(House.battery).remaining_capacity += House.output
+            House.latest_cable = tuple([(House.x_coordinate, House.y_coordinate)])
         
+        self.random_assignment(grid, houses)
+        for House in houses:
+            battery = grid.all_batteries.get(House.battery)
+            self.create_cable(House, battery)
+        
+    def calculate_cost(self, grid):
+        cost = 5000 * len(grid.all_batteries.values())
         for House in grid.all_houses.values():
-            cable_cost += len(House.cables)
-
-        return cable_cost
+            cost += 9 * len(House.cables)
+        return cost
 
     def fix_error(self):
         self.retry = False
         return self.grid
     
-
     def run(self, grid):
         # Saves old grid
         self.grid = copy.deepcopy(grid)
@@ -62,7 +68,7 @@ class u_hillclimber(hillclimber):
                 new_grid = self.fix_error()
                 continue
             # Save best solution
-            if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
+            if self.calculate_cost(self.grid) > self.calculate_cost(new_grid):
                 no_improvement = 0
                 self.grid = new_grid
                 print(f"Found better solution: {self.calculate_cost(self.grid)}")
