@@ -1,9 +1,9 @@
 import random
 import copy
 from .hillclimber import hillclimber
-from .u_random import u_random
+from .randomize import randomize
 
-class u_hillclimber(u_random):
+class u_hillclimber(randomize):
 
     def __init__(self, grid):
         self.grid = None

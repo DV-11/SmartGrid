@@ -8,7 +8,7 @@ class randomize_shared():
         self.n = 100
         self.best_cost = 0
 
-    def get_destination(self, house, grid):   #get_nearest_destination
+    def get_destination(self, house, grid):   
         """
         Finds closest battery or cable from house.
         """

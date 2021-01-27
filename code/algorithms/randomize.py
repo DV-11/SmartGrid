@@ -1,22 +1,23 @@
-import random, copy
+import random, copy, operator
 
-class u_random():
+class randomize():
     def __init__(self, grid):
         self.grid = None
         self.retry = False
         self.first = True
 
-    # Randomly assign a battery to each house to be connected without regard for outputs and capacities 
+    # Randomly assigns a battery to each house to be connected without regard for outputs and capacities 
     def random_assignment(self, grid, houses):
 
-        # Take all batteries
+        # Takes all batteries
         all_batteries = list(grid.all_batteries.values())
         random.shuffle(all_batteries)
-        
+            
         # Randomly assign a battery to each house
         for House in houses:
             no_battery_found = 0
 
+            # Checks per battery if there is still room, if so connects, otherwise counts this
             for Battery in all_batteries:
                 if Battery.remaining_capacity - House.output > 0:
                     House.destination = tuple([Battery.x_coordinate, Battery.y_coordinate])
@@ -27,23 +28,24 @@ class u_random():
                 else: 
                     no_battery_found += 1
 
-            if no_battery_found >= 5:
-                self.retry = True
-                break
+                # If no battery was found, sets variable to retry to true and ends loop
+                if no_battery_found >= 5:
+                    self.retry = True
+                    break
 
-        # return grid with assignments 
+        # Returns grid 
         return grid
 
-    # get the coordenates of a cable between a house and a battery 
     def create_cable(self, house, battery):
-        # set coordinates to ints 
+
+        # Convert coordinates to integers
         house_c = [int(house.x_coordinate),int(house.y_coordinate)]
         destination_c = [int(battery.x_coordinate), int(battery.y_coordinate)]
 
-        # first points where the cable goes through 
+        # Sets orientation to house coordinates 
         latest = house_c
 
-        # determine which points in the grid the cable goes through 
+        # Adds cables in direction until they reach coordinates of destination 
         if house_c[1] >= destination_c[1]:
             while latest[1] > destination_c[1]:
                 house.cables.append(tuple(latest))
@@ -62,10 +64,11 @@ class u_random():
                 house.cables.append(tuple(latest))
                 latest[0] = latest[0] + 1
             
-        # final destination of the cable
+        # Adds the final cable 
         house.cables.append(tuple(destination_c))
 
     def calculate_cost(self, grid):
+        # Calcultes cost
         cost = 5000 * len(grid.all_batteries.values())
         for House in grid.all_houses.values():
             cost += 9 * len(House.cables)
@@ -75,14 +78,14 @@ class u_random():
         # Assigns a battery to each house
         if self.first:
             self.grid = copy.deepcopy(grid)
-        houses = grid.all_houses.values()
+        houses = list(grid.all_houses.values())
+    
         self.random_assignment(grid, houses)
-
+    
         # Retries if configuration was invalid
         if self.retry:
             self.retry = False
             self.first = False
-            print("found error in solution, retrying")
             grid = self.grid
             self.run(grid)
 

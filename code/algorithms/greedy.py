@@ -57,16 +57,16 @@ class restricted_greedy():
     def run(self, grid, district_number):
         all_batteries = list(grid.all_batteries.values())
 
-        # make a list with each battery, max capacity and the current output
+        # Makes a list with each battery, max capacity and the current output
         capacities_and_outputs = []
 
-        # make a list with houses and their outputs 
+        # Makes a list with houses and their outputs 
         by_output= []
 
         for Battery in all_batteries:
             capacities_and_outputs.append([Battery,float(Battery.capacity),0])
 
-        # find the closest house to connect 
+        # Finds the closest house to connect 
         for House in grid.all_houses.values():
             by_output.append([House, float(House.output)])
         
@@ -113,7 +113,3 @@ class restricted_greedy():
         
         # return total
         return total_cost   
-
-
-
-

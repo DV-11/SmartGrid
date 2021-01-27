@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from code.algorithms.restricted import restricted_greedy
+from code.algorithms.greedy import restricted_greedy
 
 # create a scatter plot on a grid to represent the districts
 def make_scatter(batteries_data, houses_data, algorithm):

@@ -1,7 +1,7 @@
 from code.classes import grid, battery, house
-from code.algorithms.u_random import u_random
+from code.algorithms.randomize import randomize
 from code.visualization.visualize import make_scatter
-from code.algorithms.restricted import restricted_greedy
+from code.algorithms.greedy import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
 from code.algorithms.uhillclimber import u_hillclimber
 from code.algorithms.random_greedy import randomize_shared
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         total_output += House.output
 
     # Allows user to choose an algorithm
-    all_algorithms = {"random_unique": u_random(grid), "restricted_greedy": restricted_greedy(grid), 
+    all_algorithms = {"random_unique": randomize(grid), "restricted_greedy": restricted_greedy(grid), 
                         "shared_randomize" : randomize_shared(grid), "hillclimber": hillclimber(grid), 
                         "simulated_annealing": simulated_annealing(grid, temperature=10000), 
                         "unique_hillclimber": u_hillclimber(grid)}
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         iterations = int(input("How many times should the program run without improving before quitting?\n"))
         grid = chosen_algorithm.run(grid, iterations)
     elif isinstance(chosen_algorithm, u_hillclimber):
-        grid = u_random(grid).run(grid)
+        grid = randomize(grid).run(grid)
         grid = chosen_algorithm.run(grid)
     else:
         grid = chosen_algorithm.run(grid)

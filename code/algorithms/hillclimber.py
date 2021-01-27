@@ -47,11 +47,15 @@ class hillclimber(randomize_shared):
             current_set_size = len(houses_to_change)
             for House in grid.all_houses.values():
                 for cable in House.cables:
+                    # Checks if house contains a cable which will be removed
                     if tuple(cable) in cables_to_remove:
                         houses_to_change.add(House.id)
+
+                        # Adds all cables from house to cables_to_remove list as well
                         for i in House.cables:
                             cables_to_remove.add(tuple(i))
                         break
+                
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
