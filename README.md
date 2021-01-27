@@ -13,11 +13,11 @@ This algorithm is called greedy because it makes the most convenient decision in
 
 ### Shared Randomize
 
-It's called shared because it allows houses to share the cables. 
+It's called shared because it allows houses to share the cables. In adition to houses being connected to batteries, a cable can be ste from a house to another cable, connecting that house to the destinated battery of the already-existing cable. For each given house, the algorithm chosses randomly from the surrounding cable points or batteries to connect to. 
 
 ### Hillclimber 
 
-The hillclimber algorithm starts with a random assignment. All houses get connected to a random battery as a starting point. From there, random adjustments are made (i.e. a random house would be randomly re-connected to another cable or battery) and if the total cost after this adjusment is lower than before, this change is accepted as the new state of the grid. This process is repeated many times, further reducing the total cost with each repetition. 
+This one is for the second prat of the case. The hillclimber algorithm starts with a random assignment. All houses get connected to a random battery as a starting point. From there, random adjustments are made (i.e. a random house would be randomly re-connected to another cable or battery) and if the total cost after this adjusment is lower than before, this change is accepted as the new state of the grid. This process is repeated many times, further reducing the total cost with each repetition. 
 
 ## Getting started
 
