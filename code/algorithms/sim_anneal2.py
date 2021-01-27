@@ -28,6 +28,9 @@ class SimulatedAnnealing(hillclimber):
         alpha = 0.99
         self.T = self.T * alpha
 
+        # Linear
+        # self.T = self.T - (self.T0 / self.iterations)
+
     def check_solution(self, new_grid):
         """
         Checks and accepts better solutions than the current solution.
