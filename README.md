@@ -11,7 +11,7 @@ There are 150 houses and 5 batteries located on a grid in each of the 3 district
 
 This algorithm is called greedy because it makes the most convenient decision in each step without considering the whole picture. This means that in a randomly determined but always constant order, the algorithm goes trhough all the houses in a district and in each instance, it connects the given house to the closest available battery. The algorithm is restricted because it keeps track of the current output each battery is receiving and won't connect a house to a battery if adding it's output would be too much for the battery. This algorithm is meant for the first part of the case, so it creates unique cables for each house. 
 
-### Shared Randomize
+### Shared Randomize       <<<< EDIT Random Greedy
 
 It's called shared because it allows houses to share the cables. 
 

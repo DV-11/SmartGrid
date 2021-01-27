@@ -9,6 +9,7 @@ class Grid():
         self.all_batteries = self.load_batteries(battery_file)
         self.all_houses = self.load_houses(house_file)
         self.all_cables = set()
+        self.cost = None
         
     def json(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)

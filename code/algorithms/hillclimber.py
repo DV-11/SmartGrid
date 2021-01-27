@@ -6,9 +6,10 @@ class hillclimber(randomize_shared):
 
     def __init__(self, grid):
         self.grid = None
-        self.n = 50
+        self.n = 5
         self.houses_to_change = 2
         self.retry = False
+        self.no_improvement = 0
 
     def find_to_mutate(self, grid):
         """
@@ -36,44 +37,48 @@ class hillclimber(randomize_shared):
         houses_to_change = set()
         batteries_to_change = set()
 
-        # Puts cables from houses from initial list in the cables_to_remove set
+        # Puts cables from houses from initial list in the cables_to_remove set 1
         for House in houses:
             for cable in House.cables:
                 cables_to_remove.add(tuple(cable))
             houses_to_change.add(House.id)
             batteries_to_change.add(House.battery)
 
-        # Checks which houses also need their cables removed. Loops until no knew houses to change are found
+        # Checks which houses also need their cables removed. Loops until no new houses to change are found
+
+        # Checks for houses with broken cable 2
         new_house_found = True
         while new_house_found:
             current_set_size = len(houses_to_change)
             for House in grid.all_houses.values():
                 for cable in House.cables:
+                    # print("House.cables: ", House.cables)
                     if tuple(cable) in cables_to_remove:
                         houses_to_change.add(House.id)
                         batteries_to_change.add(House.battery)
-                        for i in House.cables:
-                            cables_to_remove.add(tuple(i))
+                        for i in House.cables:              # and this be removed altogether
+                            # print("2        House.cables: ", House.cables)
+                            cables_to_remove.add(tuple(i))  # shouldn't this be tuple(cable) but with 2 tabs back?
             if current_set_size == len(houses_to_change):
                 new_house_found = False
 
-        # Removes the cables of all houses which need their cables removed
+        # Removes the cables of all houses which need their cables removed 3
         houses_to_change = list(houses_to_change)
         for i in houses_to_change:
             key = grid.all_houses.get(i).battery
-            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output
+            grid.all_batteries.get(key).remaining_capacity += grid.all_houses.get(i).output    
             # Finds house and removes cables from battery
             for cable in grid.all_houses.get(i).cables:
                 grid.all_batteries.get(key).cables.remove(tuple(cable))
 
             grid.all_houses.get(i).cables.clear()
 
-        # Ensures battery coordinates are still in battery.cables for creation of new cables
+        # Ensures battery coordinates are still in battery.cables for creation of new cables 4
         for Battery in grid.all_batteries.values():
             if tuple([Battery.x_coordinate,Battery.y_coordinate]) not in Battery.cables:
                 Battery.cables.append(tuple([Battery.x_coordinate,Battery.y_coordinate]))
 
-        # Builds new cables for these houses
+        # Builds new cables for these houses 5
         for i in houses_to_change:
             grid.all_houses.get(i).distance = 0
             self.get_destination(grid.all_houses.get(i), grid)
@@ -92,30 +97,46 @@ class hillclimber(randomize_shared):
         self.retry = False
         return self.grid
     
+    def check_solution(self, new_grid):
+        """
+        Checks and accepts better solutions than the current solution.
+        """
+        new_cost = self.calculate_cost(new_grid)
+        old_cost = self.calculate_cost(self.grid) # grid.calculate_cost() # or self.cost?
+
+        # Save best solution
+        if old_cost > new_cost:
+            self.no_improvement = 0
+            print("Better solution found!")
+            self.grid = new_grid
+            self.cost = new_cost
+            print("New cost:", self.cost)
+        else:
+            self.no_improvement += 1
 
     def run(self, grid):
+        """
+        Runs the hillclimber algorithm for a specific amount of iterations.
+        """
         # Saves old grid
         self.grid = copy.deepcopy(grid)
-        no_improvement = 0
 
         # Makes small changes every loop
-        while no_improvement < self.n:
+        while self.no_improvement < self.n:
+            print(f"Iteration {self.no_improvement}/{self.n}, current cost: {self.grid.calculate_cost()}")
             new_grid = copy.deepcopy(self.grid)
+            
             # Mutates a few houses
             houses = self.find_to_mutate(new_grid)
             self.mutate_house_cable(houses, new_grid)
+            
             # Check if solution is valid
             if self.retry:
                 new_grid = self.fix_error()
                 continue
+            
             # Save best solution
-            if int(self.calculate_cost(self.grid)) > int(self.calculate_cost(new_grid)):
-                no_improvement = 0
-                print("found better solution")
-                self.grid = new_grid
-                print(self.calculate_cost(self.grid))
-            else:
-                no_improvement += 1
+            self.check_solution(new_grid)
         
         # Returns best grid
         return self.grid
