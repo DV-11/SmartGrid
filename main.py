@@ -35,7 +35,7 @@ if __name__ == "__main__":
         total_output += House.output
 
     # Allows user to choose an algorithm
-    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "hillclimberdebug": hillclimberdebug(grid), "test": test(grid), "random_unique": u_random(grid)}
+    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "random_unique": u_random(grid), "simanneal": SimulatedAnnealing(grid, temperature=19)}
     chosen_algorithm = None
     while chosen_algorithm not in all_algorithms:
         chosen_algorithm = input(f"Choose an algorithm {all_algorithms.keys()} \n")
@@ -44,18 +44,18 @@ if __name__ == "__main__":
     print(f"Running algorithm: {chosen_algorithm}.")
     chosen_algorithm = all_algorithms.get(chosen_algorithm)
 
-    if isinstance(chosen_algorithm, hillclimber):
-        grid = randomize_shared(grid).run(grid)
+    # if isinstance(chosen_algorithm, hillclimber):
+    #     grid = randomize_shared(grid).run(grid)
 
     if isinstance(chosen_algorithm, restricted_greedy):
-        grid = restricted_greedy(grid).run(grid,district_number)
+        grid = restricted_greedy(grid).run(grid, district_number)
+    elif isinstance(chosen_algorithm, hillclimber):
+        grid = randomize_shared(grid).run(grid)
+        grid = chosen_algorithm.run(grid, 1500)
+    elif isinstance(chosen_algorithm, simanneal):
+        grid = chosen_algorithm.run(grid, 1500)
     else:
         grid = chosen_algorithm.run(grid)
-
-    # Testing sim_anneal2
-
-    simanneal = SimulatedAnnealing(grid, temperature=19)
-
     
     # Print cost
     print('Total cost:',f'{chosen_algorithm.calculate_cost(grid)}')
