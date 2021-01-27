@@ -57,7 +57,7 @@ Choose a district (1, 2, 3)
 Simply input the number of one of the districts to continue.
 Then you must select which algorithm you want to run: 
 ```
-Choose an algorithm dict_keys(['restricted_greedy', 'hillclimber', 'shared_randomize']) 
+Choose an algorithm dict_keys(['random_unique', 'restricted_greedy', 'shared_randomize', 'hillclimber', 'simulated_annealing']) 
 ```
 
 Input the name of the desired algorithm as written on the prompt. 
