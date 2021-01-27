@@ -29,7 +29,8 @@ class hillclimber(randomize_shared):
 
     def mutate_house_cable(self, houses, grid):
         """
-        Reconfigures a list of houses and fixes cables that it breaks along the way.
+        Inherits a list of houses to remove cables from. Sees which houses lose cables as a result.
+        Creates new cables for all houses which now lack cables.
         """
         cables_to_remove = set()
         houses_to_change = set()
@@ -82,6 +83,9 @@ class hillclimber(randomize_shared):
             self.create_new_cable(grid.all_houses.get(house), grid)
 
     def calculate_cost(self, grid):
+        """
+        Returns cost based on cable length and the amount of batteries
+        """
         cable_cost = 0
 
         for Battery in grid.all_batteries.values():
@@ -91,6 +95,10 @@ class hillclimber(randomize_shared):
         return cable_cost
 
     def fix_error(self):
+        """
+        Returns the old grid to overwrite the grid with an error.
+        """
+        # Sets .retry to false so this function is not guaranteed to get called next iteration
         self.retry = False
         return self.grid
     

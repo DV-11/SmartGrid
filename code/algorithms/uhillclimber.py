@@ -29,30 +29,43 @@ class u_hillclimber(randomize):
         return to_change
 
     def mutate_house_cable(self, houses, grid):
-
+        """
+        Removes all cables from previously chosen houses and creates new ones
+        """
         # Removes the cables of all houses which need their cables removed
         for House in houses:
             House.cables.clear()
-            grid.all_batteries.get(House.battery).remaining_capacity += House.output
             House.latest_cable = tuple([(House.x_coordinate, House.y_coordinate)])
-        
+            # Restores capacity of corresponding battery
+            grid.all_batteries.get(House.battery).remaining_capacity += House.output
+
+        # Assigns new destination to houses and creates cable
         self.random_assignment(grid, houses)
         for House in houses:
             battery = grid.all_batteries.get(House.battery)
             self.create_cable(House, battery)
         
     def calculate_cost(self, grid):
+        """
+        Returns cost of current cable configuration
+        """
         cost = 5000 * len(grid.all_batteries.values())
         for House in grid.all_houses.values():
             cost += 9 * len(House.cables)
         return cost
 
     def fix_error(self):
+        """
+        Returns old grid to undo changes that led to error
+        """
         self.retry = False
         return self.grid
     
     def run(self, grid, houses_to_change, iterations):
-
+        """
+        Starts with a random solution and makes small changes until 
+        no improvements have been found for a number of iterations chosen by user
+        """
         # Saves user input
         self.houses_to_change = houses_to_change
 
