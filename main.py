@@ -9,7 +9,6 @@ from code.algorithms.sim_anneal import simulated_annealing
 
 import json 
 
-
 if __name__ == "__main__":
 
     # Allows user to choose a district
@@ -58,8 +57,10 @@ if __name__ == "__main__":
         iterations = int(input("How many times should the program run without improving before quitting?\n"))
         grid = chosen_algorithm.run(grid, iterations)
     elif isinstance(chosen_algorithm, u_hillclimber):
+        to_change = int(input("How many houses would you like to change per iteration (recommend 2-5)\n"))
+        iterations = int(input("How many times should the program run without improving before quitting?\n"))
         grid = randomize(grid).run(grid)
-        grid = chosen_algorithm.run(grid)
+        grid = chosen_algorithm.run(grid, to_change, iterations)
     else:
         grid = chosen_algorithm.run(grid)
     

@@ -51,22 +51,32 @@ class u_hillclimber(randomize):
         self.retry = False
         return self.grid
     
-    def run(self, grid):
-        # Saves old grid
+    def run(self, grid, houses_to_change, iterations):
+
+        # Saves user input
+        self.houses_to_change = houses_to_change
+
+        # Saves initial solution
         self.grid = copy.deepcopy(grid)
+
+        # Sets variable and informs user
         no_improvement = 0
         print("Started hillclimbing...")
         print(f"Initial cost: {self.calculate_cost(grid)}")
+
         # Makes small changes every loop
-        while no_improvement < self.n:
+        while no_improvement < iterations:
             new_grid = copy.deepcopy(self.grid)
+
             # Mutates a few houses
             houses = self.find_to_mutate(new_grid)
             self.mutate_house_cable(houses, new_grid)
-            # Check if solution is valid
+
+            # Check if solution is valid, if not: makes changes undone
             if self.retry:
                 new_grid = self.fix_error()
                 continue
+
             # Save best solution
             if self.calculate_cost(self.grid) > self.calculate_cost(new_grid):
                 no_improvement = 0
