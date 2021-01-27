@@ -23,6 +23,9 @@ It's called shared because it allows houses to share the cables. In addition to 
 
 This one is for the second prat of the case. The hillclimber algorithm starts with a random assignment. All houses get connected to a random battery as a starting point. From there, random adjustments are made (i.e. a random house would be randomly re-connected to another cable or battery) and if the total cost after this adjustment is lower than before, this change is accepted as the new state of the grid. This process is repeated many times, further reducing the total cost with each repetition. 
 
+### Simulated Annealing
+
+A vaiation of the hillclimber algorithm. It not only accepts changes that improve the results, but there is also a chance that it will accept changes that lead to a worse resut. This might seem bad, but it's actually very useful to find the global optimum (i.e. the best solution overal) and not just the local optimum (i.e. the best solution within a certain range). If you have troubles understanding this, [check this neat visualization](https://en.wikipedia.org/wiki/File:Hill_Climbing_with_Simulated_Annealing.gif) 
 ## Getting started
 
 ### Requirements

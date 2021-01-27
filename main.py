@@ -1,11 +1,10 @@
 from code.classes import grid, battery, house
 from code.algorithms.u_random import u_random
 from code.visualization.visualize import make_scatter
-from code.algorithms.greedy import greedy_assignment, find_distance
 from code.algorithms.restricted import restricted_greedy
 from code.algorithms.hillclimber import hillclimber
 from code.algorithms.random_greedy import randomize_shared
-from code.algorithms.sim_anneal2 import SimulatedAnnealing
+from code.algorithms.sim_anneal import simulated_annealing
 
 import json 
 
@@ -35,9 +34,9 @@ if __name__ == "__main__":
         total_output += House.output
 
     # Allows user to choose an algorithm
-    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), 
-                        "shared_randomize" : randomize_shared(grid), "random_unique": u_random(grid), 
-                        "simanneal": SimulatedAnnealing(grid, temperature=10000)}
+    all_algorithms = {"random_unique": u_random(grid), "restricted_greedy": restricted_greedy(grid), 
+                        "shared_randomize" : randomize_shared(grid), "hillclimber": hillclimber(grid), 
+                        "simulated_annealing": simulated_annealing(grid, temperature=10000)}
     chosen_algorithm = None
     while chosen_algorithm not in all_algorithms:
         chosen_algorithm = input(f"Choose an algorithm {all_algorithms.keys()} \n")
@@ -54,7 +53,7 @@ if __name__ == "__main__":
     elif isinstance(chosen_algorithm, hillclimber):
         grid = randomize_shared(grid).run(grid)
         grid = chosen_algorithm.run(grid, 1500)
-    elif isinstance(chosen_algorithm, simanneal):
+    elif isinstance(chosen_algorithm, simulated_annealing):
         grid = chosen_algorithm.run(grid, 1500)
     else:
         grid = chosen_algorithm.run(grid)

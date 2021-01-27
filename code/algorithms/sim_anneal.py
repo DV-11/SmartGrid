@@ -1,47 +1,54 @@
-from code.classes import grid, battery, house
-from code.algorithms.randomize import random_assignment, create_cable
-from code.visualization.visualize import make_scatter
-from code.algorithms.greedy import greedy_assignment, find_distance
-from code.algorithms.restricted import restricted_greedy
-from code.algorithms.hillclimber import hillclimber
 import random
-from random import randrange
-import json 
+import math
+
+from code.algorithms.hillclimber import hillclimber
 
 
-def sim_anneal(grid, repetitions):
-    
-    all_batteries = list(grid.all_batteries.values())
-    grid = random_assignment(grid) 
-    score = grid.calculate_cost()
+class simulated_annealing(hillclimber):
+    """
+    The SimulatedAnnealing class that randomly reattaches a group of houses' cables. 
+    Improvements or equivalent solutions are kept for the next iteration.
+    Worse solutions are sometimes kept, depending on the temperature.
+    """
+    def __init__(self, grid, temperature=1):
+        # Use the init of the Hillclimber class
+        super().__init__(grid)
 
-    for i in range(repetitions):
-        temp_grid = grid
-        house = None
-        stopper = randrange(len(temp_grid.all_houses.values()))
-        counter = 0
+        # Starting temperature and current temperature
+        self.T0 = temperature
+        self.T = temperature
 
-        for i in temp_grid.all_houses.values():
-            if counter == stopper:
-                house = i
+    def update_temperature(self):
+        """
+        This function implements a *exponential* cooling scheme.
+        Alpha can be any value below 1 but above 0.
+        Temperature will become zero after all iterations passed to the run()
+        method have passed.
+        """
+        alpha = 0.99
+        self.T = self.T * alpha
 
-            counter += 1
+    def check_solution(self, new_grid):
+        """
+        Checks and accepts better solutions than the current solution.
+        Also sometimes accepts solutions that are worse, depending on the current
+        temperature.
+        """
+        new_cost = self.calculate_cost(new_grid)
+        old_cost = self.calculate_cost(self.grid)
 
-        house.battery = random.choice(all_batteries)
-        new_score = temp_grid.calculate_cost()
-        
-        if new_score < score:
-            grid = temp_grid
+        # Calculate the probability of accepting this new grid
+        delta = new_cost - old_cost
+        probability = math.exp(-delta / self.T)
 
-    return grid
+        # Pull a random number between 0 and 1 and see if we accept the graph!
+        if random.random() < probability:
+            self.no_improvement = 0
+            self.grid = new_grid
+            self.cost = new_cost
+            print(f"Accepted a different solution: {self.cost}!")
+        else:
+            self.no_improvement += 1
 
-district = "district-1"
-grid = grid.Grid(f"data/{district}/{district}_batteries.csv", f"data/{district}/{district}_houses.csv")
-grid = sim_anneal(grid, 10000000)
-
-for House in grid.all_houses.values():
-    create_cable(House, House.battery)
-
-print("Total cost:", grid.calculate_cost())
-
-make_scatter(grid.all_batteries.values(), grid.all_houses.values())
+        # Update the temperature
+        self.update_temperature()
