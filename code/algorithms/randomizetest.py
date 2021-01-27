@@ -12,7 +12,7 @@ class randomize_shared():
         for house in graph.all_houses.values():
             house.set_value(random.choice(possibilities))
 
-    def random_reconfigure_house(grid, house, possibilities):
+    def random_reconfigure_house(grid, house, possibilities): # !!!!!!!!
         """
         Takes a house and randomly re-connects to one of the available batteries.
         """
