@@ -1,5 +1,5 @@
 from code.classes import grid, battery, house
-from code.algorithms.randomize import random_assignment, create_cable
+from code.algorithms.u_random import u_random
 from code.visualization.visualize import make_scatter
 from code.algorithms.greedy import greedy_assignment, find_distance
 from code.algorithms.restricted import restricted_greedy
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         total_output += House.output
 
     # Allows user to choose an algorithm
-    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "hillclimberdebug": hillclimberdebug(grid), "test": test(grid)}
+    all_algorithms = {"restricted_greedy": restricted_greedy(grid), "hillclimber": hillclimber(grid), "shared_randomize" : randomize_shared(grid), "hillclimberdebug": hillclimberdebug(grid), "test": test(grid), "random_unique": u_random(grid)}
     chosen_algorithm = None
     while chosen_algorithm not in all_algorithms:
         chosen_algorithm = input(f"Choose an algorithm {all_algorithms.keys()} \n")

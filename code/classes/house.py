@@ -25,25 +25,7 @@ class House():
         pass
 
     def find_nearest_destination(self, grid): 
-        destination = None
-        shortest_distance = float('inf')
-
-        # Loop through all batteries and put its cables in a list
-        for battery in grid.all_batteries.values():
-            battery_cables = list(battery.cables)
-
-            # Save each coordinate's distance as new distance
-            for cable in range(len(battery_cables)):
-                new_distance = self.get_distance(self.x_coordinate, self.y_coordinate, 
-                    int(battery_cables[cable][0]), int(battery_cables[cable][1]))
-
-                # Keep track of shortest distance
-                if new_distance < shortest_distance:
-                    shortest_distance = new_distance
-                    destination = tuple([int(battery_cables[cable][0]), int(battery_cables[cable][1])])
-                    # self.distance?
-
-        return destination  # coordinate of battery or cable
+        pass
 
     def lay_simple_cable(self, house, battery):
         origin = [int(house.x_coordinate),int(house.y_coordinate)] # x = 0, y = 1
