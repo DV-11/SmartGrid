@@ -67,14 +67,17 @@ class u_random():
 
     def calculate_cost(self, grid):
         cost = 5000 * len(grid.all_batteries.values())
+
         for House in grid.all_houses.values():
             cost += 9 * len(House.cables)
+
         return cost
 
     def run(self, grid):
         # Assigns a battery to each house
         if self.first:
             self.grid = copy.deepcopy(grid)
+
         houses = grid.all_houses.values()
         self.random_assignment(grid, houses)
 
