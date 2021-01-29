@@ -60,14 +60,12 @@ You'll be prompted to choose one of the districts:
 ```
 
 Simply input the number of one of the districts to continue.
-```
+
 Next the algorithm asks which part of the case you want to run an algorithm for:
 ```
 "Would you like to run an algorithm where cables can be shared? (yes/no)"
-
 ```
 Answer by typing yes or no.
-```
 Then you must select which algorithm you want to run. The algorithms you will be shown depend on which answer you gave to the previous prompt. This is what you are shown if you had answered yes: 
 
 ```
